@@ -70,9 +70,7 @@ class App extends GetView<BottomNavController> {
         ),
       ),
       ), 
-      onWillPop: ()async{
-        return false;//앱이 닫힐건지 열릴건지 bool값으로 결정
-      },
+      onWillPop: controller.willPopAction
     );
   }
 }
