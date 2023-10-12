@@ -72,4 +72,6 @@ class IconsPath {
       'assets/images/mypage_bottom_sheet_setting_06.jpg';
   static String get mypageBottomSheetSetting07 =>
       'assets/images/mypage_bottom_sheet_setting_07.jpg';
+  static String get reportpet => 'assets/images/report_pet.jpg';
+  static String get searchlostpet=> 'assets/images/search_lost_pet.jpg';
 }

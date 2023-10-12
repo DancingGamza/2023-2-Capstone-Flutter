@@ -3,6 +3,7 @@ import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:flutter_sns_form/src/controller/bottom_nav_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_sns_form/src/pages/home.dart';
+import 'package:flutter_sns_form/src/pages/search.dart';
 import 'package:flutter_sns_form/src/pages/active_history.dart';
 class App extends GetView<BottomNavController> {
   const App({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class App extends GetView<BottomNavController> {
           children: [
             const Home(),
             //const Search(),
-            Container(child: Text('SEARCH'),),
+            const Search(),
+            //Container(child: Text('SEARCH'),),
             Container(),
             const ActiveHistory(),
             Container(child: Center(child: Text('MYPAGE')),),
