@@ -98,7 +98,7 @@ Widget _imageSelectList(){
         backgroundColor:Colors.white,
         elevation:0,
         leading:GestureDetector(
-          onTap: (){},
+          onTap: Get.back,
           child: Padding(padding: const EdgeInsets.all(15.0),
           child: ImageData(IconsPath.closeImage),
           ),

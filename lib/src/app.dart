@@ -3,6 +3,7 @@ import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:flutter_sns_form/src/controller/bottom_nav_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_sns_form/src/pages/home.dart';
+import 'package:flutter_sns_form/src/pages/active_history.dart';
 class App extends GetView<BottomNavController> {
   const App({Key? key}) : super(key: key);
 
@@ -10,28 +11,15 @@ class App extends GetView<BottomNavController> {
   Widget build(BuildContext context){
     return WillPopScope(
       child: Obx(()=>Scaffold(
-        backgroundColor: const Color.fromARGB(255, 44, 60, 143),
-        /*
-        appBar: AppBar(
-          
-          shape:RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom:Radius.circular(40)
-              )
-              )
-              
-              ),*/
-              
+        backgroundColor: const Color.fromARGB(255, 44, 60, 143),    
         body: IndexedStack(
           index:controller.pageIndex.value,
           children: [
-            //ClipRRect(
-            //borderRadius: BorderRadius.circular(6),),
             const Home(),
             //const Search(),
             Container(child: Text('SEARCH'),),
-            Container(child: Center(child: Text('UPLOAD')),),
-            Container(child: Center(child: Text('ACTIVITY')),),
+            Container(),
+            const ActiveHistory(),
             Container(child: Center(child: Text('MYPAGE')),),
             
           ],
