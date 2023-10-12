@@ -28,6 +28,7 @@ class App extends GetView<BottomNavController> {
             //ClipRRect(
             //borderRadius: BorderRadius.circular(6),),
             const Home(),
+            //const Search(),
             Container(child: Text('SEARCH'),),
             Container(child: Center(child: Text('UPLOAD')),),
             Container(child: Center(child: Text('ACTIVITY')),),

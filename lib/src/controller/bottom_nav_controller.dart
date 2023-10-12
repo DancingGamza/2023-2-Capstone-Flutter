@@ -23,7 +23,7 @@ class BottomNavController extends GetxController{
     }
     if(value ==2){
       //upload event
-      Get.to(() => const Upload());
+      Get.to(() =>  const Upload());
     }
     if(value ==3){
       //activity event
