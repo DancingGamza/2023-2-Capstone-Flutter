@@ -15,54 +15,7 @@ class MessagePopup extends StatelessWidget {
     this.cancelCallback
   }) : super(key: key);
 
-/*
-@override 
-Widget build(BuildContext context){
-  return Material(
-    color: Colors.transparent,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-        Container(
-          color:Colors.white,
-          padding:const EdgeInsets.symmetric(horizontal:40 ,vertical:15 ),
-          width: Get.width *0.7,
-          child:Column(
-            children: [
-              Text(
-                title!,
-                style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-                color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 7),//간격만들어줌
-              Text(
-                message!,
-                style: const TextStyle(
-                  fontSize:14,
-                  color: Colors.black,
-                )
-              ),
-              const SizedBox(height: 10),//간격만들어줌
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(onPressed: okCallback,child: Text('확인')),
-                const SizedBox(width: 10),
-                ElevatedButton(onPressed: cancelCallback,child: Text('취소'),style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),)
-              ],
-              ),
-            ],
-          ),
-        ),),],),
-}
-}
 
-*/
 
 @override
 Widget build(BuildContext context) {
@@ -102,6 +55,8 @@ Widget build(BuildContext context) {
                     ElevatedButton(
                       onPressed: okCallback,
                       child: Text('확인'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 44, 60, 143),),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(

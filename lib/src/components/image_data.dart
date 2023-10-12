@@ -27,6 +27,7 @@ class IconsPath {
   static String get activeOff => 'assets/images/bottom_nav_active_off_icon.jpg';
   static String get activeOn => 'assets/images/bottom_nav_active_on_icon.jpg';
   static String get logo => 'assets/images/logo.jpg';
+  static String get mylogo => 'assets/images/catchpett.jpg';
   static String get directMessage => 'assets/images/direct_msg_icon.jpg';
   static String get plusIcon => 'assets/images/plus_icon.png';
   static String get postMoreIcon => 'assets/images/more_icon.jpg';
