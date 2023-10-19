@@ -38,7 +38,7 @@ dependencies:
   get: ^4.6.6
   cached_network_image: ^3.3.0
   expandable_text: ^2.3.0
-  photo_manager: ^2.7.2
+  photo_manager: ^2.7.1
 
 dev_dependencies:
   flutter_test:

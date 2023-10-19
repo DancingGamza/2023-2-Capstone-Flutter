@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: InitBinding(),
       home: const App(),
-      //const MyHomePage(title: 'Yuna is good girl'),
+      //const MyHomePage(title: 'Yuna'),
     );
   }
 }
