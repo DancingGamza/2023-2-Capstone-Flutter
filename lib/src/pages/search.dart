@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 import 'package:flutter_sns_form/src/components/image_data.dart';
+import 'package:flutter_sns_form/src/pages/catch_pet.dart';
 class Search extends StatelessWidget {
+  
   const Search({Key? key}) : super(key: key);
 
   void _navigateToFirstPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => FirstPage(),
+      builder: (context) => CatchPet(),
     ));
   }
 
@@ -63,10 +69,7 @@ class Search extends StatelessWidget {
   }
 }
 
-// FirstPage 및 SecondPage 위젯은 이전 코드와 동일합니다.
 
-
-// FirstPage 및 SecondPage 위젯은 이전 코드와 동일합니다.
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

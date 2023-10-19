@@ -4,6 +4,7 @@ import 'package:flutter_sns_form/src/binding/init_bindings.dart';
 import 'package:get/get.dart';
 //import 'package:flutter_sns_form/lib/src/app.dart';
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
