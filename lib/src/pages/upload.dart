@@ -189,9 +189,9 @@ Widget _photoWidget(AssetEntity asset, int size) {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 44, 60, 143),
+      backgroundColor: const Color.fromARGB(149, 51, 77, 143),
       appBar: AppBar(
-        backgroundColor:const Color.fromARGB(255, 44, 60, 143),
+        backgroundColor:const Color.fromARGB(149, 51, 77, 143),
         elevation:0,
         leading:GestureDetector(
           onTap: Get.back,
