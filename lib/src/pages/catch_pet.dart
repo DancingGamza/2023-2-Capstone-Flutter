@@ -71,7 +71,7 @@ class _CatchPetPageState extends State<CatchPetPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Catch Pet!'),
-        backgroundColor: Color.fromARGB(255, 44, 60, 143),
+        backgroundColor: Color.fromARGB(149, 51, 77, 143),
       ),
       //color: Color.fromARGB(255, 44, 60, 143),
       body: Center(
@@ -80,7 +80,7 @@ class _CatchPetPageState extends State<CatchPetPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _capturePhoto,
         child: Icon(Icons.camera),
-        backgroundColor: Color.fromARGB(255, 44, 60, 143),
+        backgroundColor: Color.fromARGB(149, 51, 77, 143),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

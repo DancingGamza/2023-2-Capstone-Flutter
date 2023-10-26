@@ -11,7 +11,7 @@ class MatchList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('사진 표시'),
-        backgroundColor:Color.fromARGB(255, 44, 60, 143),
+        backgroundColor:Color.fromARGB(149, 51, 77, 143),
       ),
       body: Center(
         child: Image.file(File(imagePath)),

@@ -33,7 +33,7 @@ class Search extends StatelessWidget {
           color: Colors.white,
         )),
       ),
-      backgroundColor: Color.fromARGB(255, 44, 60, 143),
+      backgroundColor: Color.fromARGB(149, 51, 77, 143),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

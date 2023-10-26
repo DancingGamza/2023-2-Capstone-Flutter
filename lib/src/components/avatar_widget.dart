@@ -30,7 +30,7 @@ class AvatarWidget extends StatelessWidget{
             end:Alignment.bottomLeft, 
             colors:[
              Colors.blue,
-             Color.fromARGB(71, 9, 137, 196)],
+             Color.fromARGB(149, 51, 77, 143)],
             ), 
             shape:BoxShape.circle,
           ),
