@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 44, 60, 143),
+          backgroundColor: Color.fromARGB(149, 51, 77, 143),
           titleTextStyle: TextStyle(color: Colors.black),
+          
         ),
       ),
       initialBinding: InitBinding(),
