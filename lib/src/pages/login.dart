@@ -31,25 +31,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
       data : formData);
     print("lllll");
     print(response);
-     /*final headers = {
-        'Content-Type': 'application/json; charset=UTF-8',
-  };
-  final body = {
-        'username': username.toString(),
-        'password': password.toString(),
-  };
-  print(jsonEncode(body));
 
-    final url = Uri.parse('http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/users/login/');
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(body),
-    );
-    print('Request: ${response.request}');
-print('Response: ${json.decode(response.body)}');
-print('Response Status Code: ${response.statusCode}');
-print('Response Body: ${response.body}');*/
     if (response.statusCode == 200) {
       setState(() {
         loginMessage = "로그인 성공이요";
@@ -73,7 +55,7 @@ print('Response Body: ${response.body}');*/
       home: Scaffold(
         body: ListView(
           children: [
-            build2(context),
+            loginarea(context),
             ElevatedButton(
               onPressed: () {
                 print("버튼눌림");
@@ -91,7 +73,7 @@ print('Response Body: ${response.body}');*/
     );
   }
 
-  Widget build2(BuildContext context) {
+  Widget loginarea(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -327,7 +309,7 @@ print('Response Body: ${response.body}');*/
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Log inn',
+                                    'real button',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -352,7 +334,7 @@ print('Response Body: ${response.body}');*/
                 child: SizedBox(
                   width: 335,
                   child: Text(
-                    'Log in',
+                    '로그인 페이지',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
