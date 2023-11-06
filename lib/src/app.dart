@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter_sns_form/src/pages/home.dart';
 import 'package:flutter_sns_form/src/pages/search.dart';
 import 'package:flutter_sns_form/src/pages/active_history.dart';
-
+import 'package:flutter_sns_form/src/pages/my_page.dart';
 class App extends GetView<BottomNavController> {
   const App({Key? key}) : super(key: key);
 
@@ -22,7 +22,8 @@ class App extends GetView<BottomNavController> {
               const Search(),
               Container(),
               const ActiveHistory(),
-              Container(child: Center(child: Text('MYPAGE'))),
+              MyPage(),
+              //Container(child: Center(child: Text('MYPAGE'))),
             ],
           ),
           bottomNavigationBar: ClipRRect( // Wrap the AppBar with ClipRRect

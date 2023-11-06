@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/app.dart';
 import 'package:flutter_sns_form/src/binding/init_bindings.dart';
 import 'package:get/get.dart';
+import 'package:flutter_sns_form/src/pages/login.dart';
 //import 'package:flutter_sns_form/lib/src/app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       initialBinding: InitBinding(),
-      home: const App(),
+      //home: const App(),
+      home:  FigmaToCodeApp(),
       //const MyHomePage(title: 'Yuna'),
     );
   }
