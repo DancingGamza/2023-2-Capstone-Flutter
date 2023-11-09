@@ -12,9 +12,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final token1 = globalToken;
-
+  
   List<Widget> generatePostList() {
-    print(token1);
+    //print(token1);
     // Generate a list of PostWidget instances.
     List<Widget> posts = List.generate(50, (index) {
       return PostWidget(token: token1); // Pass your token here.

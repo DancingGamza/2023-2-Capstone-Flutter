@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 
+String globalUser='';
+String globalNumber='';
+
 class MyPage extends StatefulWidget {
   @override
   _MyPageState createState() => _MyPageState();
@@ -11,8 +14,6 @@ class _MyPageState extends State<MyPage> {
 
   final dio = Dio();
 
-
-  
         var username = '';
         var nickname = '';
         var phone_number = '';
@@ -41,9 +42,11 @@ class _MyPageState extends State<MyPage> {
         print("Success: ${response.data}");
         var userInfo = response.data;
         username = userInfo['username'];
+        globalUser=username;
          print("Success: $username");
         nickname = userInfo['nickname'];
         phone_number = userInfo['phone_number'];
+        globalNumber=phone_number;
         register_date = userInfo['register_date'];
         // 이후 필요한 작업을 수행하실 수 있습니다.
       } else if (response.statusCode == 401) {

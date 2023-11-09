@@ -42,7 +42,7 @@ class _PostWidgetState extends State<PostWidget> {
           print("데이터들어옴");
           animalInfo = response.data;
           imageUrl = "http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/media/" +animalInfo['data']['main_img'];
-          print("http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/media/" +imageUrl);
+          print(imageUrl);
         });
         // You can perform additional tasks with 'animalInfo' here.
       } else if (response.statusCode == 401) {
