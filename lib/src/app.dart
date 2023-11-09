@@ -6,6 +6,8 @@ import 'package:flutter_sns_form/src/pages/home.dart';
 import 'package:flutter_sns_form/src/pages/search.dart';
 import 'package:flutter_sns_form/src/pages/active_history.dart';
 import 'package:flutter_sns_form/src/pages/my_page.dart';
+import 'package:flutter_sns_form/src/pages/login.dart';
+
 class App extends GetView<BottomNavController> {
   const App({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class App extends GetView<BottomNavController> {
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-              const Home(),
+              Home(),
               const Search(),
               Container(),
               const ActiveHistory(),
