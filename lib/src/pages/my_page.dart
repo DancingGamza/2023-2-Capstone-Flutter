@@ -55,23 +55,61 @@ class _MyPageState extends State<MyPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("마이페이지"),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text("마이페이지"),
+    ),
+    backgroundColor: const Color.fromARGB(149, 51, 77, 143),
+    body: Center(
+      child: Column(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(45),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(159, 255, 178, 178),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("사용자명: $username", style: TextStyle(color: Colors.black)),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(45),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(159, 255, 178, 178),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("닉네임: $nickname", style: TextStyle(color: Colors.black)),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(45),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(159, 255, 178, 178),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("전화번호: $phone_number", style: TextStyle(color: Colors.black)),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(45),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(159, 255, 178, 178),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("등록일자: $register_date", style: TextStyle(color: Colors.black)),
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("사용자명: $username"),
-            Text("닉네임: $nickname"),
-            Text("전화번호: $phone_number"),
-            Text("등록일자: $register_date"),
-          ],
-        ),
-      ),
-    );
-  }
+    ),
+  );
+}
 }
