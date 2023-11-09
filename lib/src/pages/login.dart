@@ -72,16 +72,17 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         body: ListView(
           children: [
             loginarea(context),
+            /*
             ElevatedButton(
               onPressed: () {
                 print("버튼눌림");
                 
                 loginUser(emailController.text, passwordController.text);
-                
+                print("위에거");
 
               },
               child: Text('Log in'),
-            ),
+            ),*/
             Text(loginMessage, style: TextStyle(color: Colors.red)),
           ],
         ),
@@ -324,15 +325,23 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'real button',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontFamily: 'Mazzard',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0,
-                                    ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      print("버튼눌림");
+                                      loginUser(emailController.text, passwordController.text);
+                                      print("위에거");
+                                      },
+                                    child: 
+                                      Text(
+                                        'Log in',
+                                        style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'Mazzard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                        ),
+                                      ),
                                   ),
                                 ],
                               ),
