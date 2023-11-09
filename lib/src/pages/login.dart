@@ -3,8 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:dio/dio.dart'; 
 import 'package:flutter_sns_form/src/app.dart';
+import 'package:flutter_sns_form/src/pages/signing_up.dart';
 var token='';
-
+String globalToken = '';
 
 //void main() {
   //runApp(FigmaToCodeApp());
@@ -14,14 +15,14 @@ var token='';
 
 
 
-class FigmaToCodeApp extends StatefulWidget {
-  FigmaToCodeApp({super.key});
+class LogingIn extends StatefulWidget {
+  LogingIn({super.key});
 
   @override
-  _FigmaToCodeAppState createState() => _FigmaToCodeAppState();
+  _LogingInState createState() => _LogingInState();
 }
 
-class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
+class _LogingInState extends State<LogingIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
  
@@ -42,7 +43,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
 
     if (response.statusCode == 200) {
       setState(() {
-        
+        globalToken = response.data['token'];
         token = response.data['token']; // Replace with the actual JSON key for the token
         //AppGlobals().setAuthToken(token);
         //loginMessage = "로그인 성공이요";
@@ -79,7 +80,6 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                 
                 loginUser(emailController.text, passwordController.text);
                 print("위에거");
-
               },
               child: Text('Log in'),
             ),*/
@@ -154,7 +154,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Email',
+                                          'ID',
                                           style: TextStyle(
                                             color: Color(0xFF474A56),
                                             fontSize: 14,
@@ -183,7 +183,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                                             ),
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: 'Enter your email address',
+                                              hintText: 'Enter your ID',
                                               hintStyle: TextStyle(
                                                 color: Color(0xFFC8D1E1),
                                                 fontSize: 14,
@@ -255,18 +255,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                                           ),
                                         ),
                                         const SizedBox(height: 10),
-                                        Text(
-                                          'Forgot password?',
-                                          style: TextStyle(
-                                            color: Color(0xFF474A56),
-                                            fontSize: 14,
-                                            fontFamily: 'Mazzard',
-                                            fontWeight: FontWeight.w500,
-                                           
-                                            //textDecoration: TextDecoration.underline,
-                                            height: 0,
-                                          ),
-                                        ),
+                                        
                                       ],
                                     ),
                                   ),
@@ -284,33 +273,31 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'Don’t you have an account? ',
-                                    style: TextStyle(
-                                      color: Color(0xFF474A56),
-                                      fontSize: 16,
-                                      fontFamily: 'Mazzard',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Sign up',
-                                    style: TextStyle(
-                                      color: Color(0xFF474A56),
-                                      fontSize: 16,
-                                      fontFamily: 'Mazzard',
-                                      fontWeight: FontWeight.w500,
-                                      //textDecoration: TextDecoration.underline,
-                                      height: 0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            //GestureDetector(
+                              InkWell(
+  onTap: () {
+    Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (context) => SigningUp(),
+    ),
+  );
+    //SigningUp();
+    print("눌림ㅁㅁㅁ");
+    // "Sign up" 텍스트를 클릭할 때 수행할 작업을 처리하세요.
+    // 예를 들어, 회원 가입 페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
+  },
+  child: Text(
+    'Don’t you have an account? Sign up',
+    style: TextStyle(
+      color: Colors.black, // 텍스트를 투명하게 만듭니다.
+      fontSize: 16,
+      fontFamily: 'Mazzard',
+      fontWeight: FontWeight.w500,
+      height: 0,
+    ),
+  ),),
+//),
+
                             const SizedBox(height: 18),
                             Container(
                               width: double.infinity,
@@ -452,46 +439,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
                                   ]),
                                 ),
                               ),
-                              Positioned(
-                                left: 22.03,
-                                top: 9.33,
-                                child: Container(
-                                  width: 15.27,
-                                  height: 10.97,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/15x11"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 9.67,
-                                child: Container(
-                                  width: 17,
-                                  height: 10.67,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/17x11"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 4.33,
-                                top: 0,
-                                child: Container(
-                                  width: 6,
-                                  height: 6,
-                                  decoration: ShapeDecoration(
-                                    color: Color(0xFFFF9500),
-                                    shape: OvalBorder(),
-                                  ),
-                                ),
-                              ),
+                              
                             ],
                           ),
                         ),

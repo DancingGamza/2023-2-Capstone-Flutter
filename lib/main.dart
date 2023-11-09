@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: InitBinding(),
       //home: const App(),
-      home:  FigmaToCodeApp(),
+      home:  LogingIn(),
       //const MyHomePage(title: 'Yuna'),
     );
   }

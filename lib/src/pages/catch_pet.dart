@@ -19,7 +19,7 @@ class CatchPetPage extends StatefulWidget {
 }
 
 class _CatchPetPageState extends State<CatchPetPage> {
-  late CameraController? _controller;
+   CameraController? _controller;
   late String _imagePath;
 
   @override
