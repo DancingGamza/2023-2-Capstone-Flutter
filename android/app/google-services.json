@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106080156313",
+    "project_id": "capstome-server-push",
+    "storage_bucket": "capstome-server-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106080156313:android:a9a4d3bbc0aab87056d608",
+        "android_client_info": {
+          "package_name": "com.snsplatform.flutter_sns_form"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqzvLhbKgT_i9c03TIKEU-NOybkbKNbZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
