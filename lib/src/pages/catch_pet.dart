@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
 
-import 'package:flutter_sns_form/src/pages/match_list.dart';
+import 'package:flutter_sns_form/src/pages/check_pic.dart';
 
 class CatchPet extends StatelessWidget {
   @override
