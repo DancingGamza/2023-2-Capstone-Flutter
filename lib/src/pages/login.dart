@@ -12,9 +12,6 @@ String globalToken = '';
 //}
 
 
-
-
-
 class LogingIn extends StatefulWidget {
   LogingIn({super.key});
 

@@ -105,19 +105,33 @@ class  RegisteringPet extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        left: 127,
-                        top: 0,
-                        child: Text(
-                          '주인 전화번호',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
+  left: 127,
+  top: 0,
+  child: Column(
+    children: [
+      Text(
+        '주인 전화번호:',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+      Text(
+        '예시',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+    ],
+  ),
+),
                     ],
                   ),
                 ),
@@ -167,19 +181,33 @@ class  RegisteringPet extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        left: 126,
-                        top: 5,
-                        child: Text(
-                          '반려동물 특징',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
+  left: 126,
+  top: 5,
+  child: Column(
+    children: [
+      Text(
+        '반려동물 특징:',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+      Text(
+        '예시',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+    ],
+  ),
+),
                     ],
                   ),
                 ),
@@ -265,19 +293,33 @@ class  RegisteringPet extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        left: 112,
-                        top: 0,
-                        child: Text(
-                          '반려동물 실종 위치',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
+  left: 112,
+  top: 0,
+  child: Column(
+    children: [
+      Text(
+        '반려동물 실종 위치:',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+      Text(
+        '예시',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+    ],
+  ),
+),
                     ],
                   ),
                 ),
@@ -373,19 +415,33 @@ class  RegisteringPet extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              left: 127,
-                              top: 0,
-                              child: Text(
-                                '반려동물 이름',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
+  left: 127,
+  top: 0,
+  child: Column(
+    children: [
+      Text(
+        '반려동물 이름:',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+      Text(
+        '예시',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+          height: 0,
+        ),
+      ),
+    ],
+  ),
+),
                           ],
                         ),
                       ),
