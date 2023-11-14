@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sns_form/src/pages/check_pic.dart';
 
 class CatchPet extends StatelessWidget {
@@ -19,7 +19,7 @@ class CatchPetPage extends StatefulWidget {
 }
 
 class _CatchPetPageState extends State<CatchPetPage> {
-   CameraController? _controller;
+  CameraController? _controller;
   late String _imagePath;
 
   @override
@@ -50,12 +50,15 @@ class _CatchPetPageState extends State<CatchPetPage> {
   void _capturePhoto() async {
     try {
       final image = await _controller!.takePicture();
-      setState(() {
-        _imagePath = image.path;
-      });
+
+      // 앨범에 저장
+      final appDir = await getApplicationDocumentsDirectory();
+      final savedImage = await File(image.path).copy('${appDir.path}/captured_image.jpg');
+      
+      // 이미지 경로를 MatchList에 전달
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => MatchList(imagePath: _imagePath),
+          builder: (context) => MatchList(imagePath: savedImage.path),
         ),
       );
     } catch (e) {
