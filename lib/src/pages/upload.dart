@@ -109,6 +109,7 @@ Widget _header() {
         ),
         Row(
           children: [
+            /*
             Container(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               decoration: BoxDecoration(
@@ -125,7 +126,8 @@ Widget _header() {
                   ),
                 ],
               ),
-            ),
+            ),*/
+            /*
             const SizedBox(width: 5),
             Container(
               padding: const EdgeInsets.all(6),
@@ -134,7 +136,7 @@ Widget _header() {
                 color: const Color(0xff808080),
               ),
               child: ImageData(IconsPath.cameraIcon),
-            ),
+            ),*/
           ],
         ),
       ],
@@ -189,9 +191,9 @@ Widget _photoWidget(AssetEntity asset, int size) {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: const Color.fromARGB(149, 51, 77, 143),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor:const Color.fromARGB(149, 51, 77, 143),
+        backgroundColor:Colors.white,
         elevation:0,
         leading:GestureDetector(
           onTap: Get.back,
@@ -199,12 +201,13 @@ Widget _photoWidget(AssetEntity asset, int size) {
           child: ImageData(IconsPath.closeImage),
           ),
         ),
+        centerTitle: true,
         title : const Text(
           'New Post',
           style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
-          color: Colors.white,
+          color: Color.fromARGB(138, 15, 179, 133),
         ),
         ),
         actions: [

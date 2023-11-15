@@ -48,6 +48,8 @@ dependencies:
   http: ^0.13.5
   dio: ^5.3.3
   firebase_messaging: ^14.7.4
+  gallery_saver: ^2.3.2
+  flutter_image_compress: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,7 +71,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  #title: Catch Pet!
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
@@ -87,7 +89,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+   - family: DungGeunMo
+     fonts:
+       - asset: assets/fonts/DungGeunMo.otf
+  #  fonts:
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

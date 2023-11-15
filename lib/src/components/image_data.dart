@@ -19,15 +19,21 @@ class ImageData extends StatelessWidget {
 }
 
 class IconsPath {
-  static String get homeOff => 'assets/images/bottom_nav_home_off_icon.jpg';
-  static String get homeOn => 'assets/images/bottom_nav_home_on_icon.jpg';
-  static String get searchOff => 'assets/images/bottom_nav_search_off_icon.jpg';
-  static String get searchOn => 'assets/images/bottom_nav_search_on_icon.jpg';
-  static String get uploadIcon => 'assets/images/bottom_nav_upload_icon.jpg';
-  static String get activeOff => 'assets/images/bottom_nav_active_off_icon.jpg';
-  static String get activeOn => 'assets/images/bottom_nav_active_on_icon.jpg';
+  static String get personOff => 'assets/images/mine.jpg';
+  static String get personOn => 'assets/images/mine_s.jpg';
+  static String get homeOff => 'assets/images/newhome.jpg';
+  static String get homeOn => 'assets/images/newhome_s.jpg';
+  static String get searchOff => 'assets/images/magnifying.jpg';
+  static String get searchOn => 'assets/images/magnifying_s.jpg';
+  static String get uploadIcon => 'assets/images/uping.jpg';
+  static String get activeOff => 'assets/images/paw.jpg';
+  static String get activeOn => 'assets/images/paw_s.jpg';
   static String get logo => 'assets/images/logo.jpg';
-  static String get mylogo => 'assets/images/catchpett.jpg';
+  static String get mylogo => 'assets/images/bottom_nav_home_on_icon.jpg';
+  static String get upsearch => 'assets/images/bottom_nav_search_on_icon.jpg';
+  static String get upheart => 'assets/images/bottom_nav_active_on_icon.jpg';
+  static String get upmine => 'assets/images/add_friend_icon.jpg';
+  static String get upfootprint => 'assets/images/upfootprint.jpg';
   static String get directMessage => 'assets/images/direct_msg_icon.jpg';
   static String get plusIcon => 'assets/images/plus_icon.png';
   static String get postMoreIcon => 'assets/images/more_icon.jpg';
@@ -75,4 +81,11 @@ class IconsPath {
   static String get reportpet => 'assets/images/report_pet.jpg';
   static String get searchlostpet=> 'assets/images/search_lost_pet.jpg';
   static String get appbar=>'assets/images/app_bar.png';
+  static String get mybar=>'assets/images/mybar.jpg';
+  static String get mybar2=>'assets/images/mybar2.jpg';
+  static String get mybar3=>'assets/images/mybar3.jpg';
+  static String get mybar4=>'assets/images/mybar4.jpg';
+  static String get toycam=>'assets/images/toycam.jpg';
+  static String get toyspeaker=>'assets/images/toyspeaker.jpg';
+  static String get mylist=>'assets/images/list.jpg';
 }

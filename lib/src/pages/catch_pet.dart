@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sns_form/src/pages/check_pic.dart';
 
 class CatchPet extends StatelessWidget {
@@ -19,7 +19,7 @@ class CatchPetPage extends StatefulWidget {
 }
 
 class _CatchPetPageState extends State<CatchPetPage> {
-   CameraController? _controller;
+  CameraController? _controller;
   late String _imagePath;
 
   @override
@@ -50,12 +50,15 @@ class _CatchPetPageState extends State<CatchPetPage> {
   void _capturePhoto() async {
     try {
       final image = await _controller!.takePicture();
-      setState(() {
-        _imagePath = image.path;
-      });
+
+      // 앨범에 저장
+      final appDir = await getApplicationDocumentsDirectory();
+      final savedImage = await File(image.path).copy('${appDir.path}/captured_image.jpg');
+      
+      // 이미지 경로를 MatchList에 전달
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => MatchList(imagePath: _imagePath),
+          builder: (context) => MatchList(imagePath: savedImage.path),
         ),
       );
     } catch (e) {
@@ -70,8 +73,13 @@ class _CatchPetPageState extends State<CatchPetPage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catch Pet!'),
-        backgroundColor: Color.fromARGB(149, 51, 77, 143),
+        elevation: 0,
+        centerTitle: true,
+        title: Text('Catch Pet!',style: TextStyle(
+      fontSize: 30, // 원하는 글씨 크기로 조절
+      fontWeight: FontWeight.bold, // 굵기 조절
+      color: Color.fromARGB(138, 15, 179, 133),),),
+        backgroundColor: Colors.white,
       ),
       //color: Color.fromARGB(255, 44, 60, 143),
       body: Center(
@@ -80,7 +88,7 @@ class _CatchPetPageState extends State<CatchPetPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _capturePhoto,
         child: Icon(Icons.camera),
-        backgroundColor: Color.fromARGB(149, 51, 77, 143),
+        backgroundColor: Color.fromARGB(255, 111, 174, 186),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
