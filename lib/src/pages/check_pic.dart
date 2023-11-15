@@ -54,7 +54,7 @@ class MatchList extends StatelessWidget {
       }
     } catch (e) {
       print("응 아예 서버로부터 값도 못받아옴 ㅅㄱ");
-      print('Error: $e');
+      print('Error: $e'); 
       print(imagePath);
     }
   }

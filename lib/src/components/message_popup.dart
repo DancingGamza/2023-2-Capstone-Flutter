@@ -56,7 +56,7 @@ Widget build(BuildContext context) {
                       onPressed: okCallback,
                       child: Text('확인'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(149, 51, 77, 143),),
+                        backgroundColor: Color.fromARGB(255, 111, 174, 186),),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(

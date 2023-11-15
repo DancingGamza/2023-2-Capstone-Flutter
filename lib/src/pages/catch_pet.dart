@@ -73,8 +73,13 @@ class _CatchPetPageState extends State<CatchPetPage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catch Pet!'),
-        backgroundColor: Color.fromARGB(149, 51, 77, 143),
+        elevation: 0,
+        centerTitle: true,
+        title: Text('Catch Pet!',style: TextStyle(
+      fontSize: 30, // 원하는 글씨 크기로 조절
+      fontWeight: FontWeight.bold, // 굵기 조절
+      color: Color.fromARGB(138, 15, 179, 133),),),
+        backgroundColor: Colors.white,
       ),
       //color: Color.fromARGB(255, 44, 60, 143),
       body: Center(
@@ -83,7 +88,7 @@ class _CatchPetPageState extends State<CatchPetPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _capturePhoto,
         child: Icon(Icons.camera),
-        backgroundColor: Color.fromARGB(149, 51, 77, 143),
+        backgroundColor: Color.fromARGB(255, 111, 174, 186),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

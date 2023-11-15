@@ -18,10 +18,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'DungGeunMo',
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(149, 51, 77, 143),
+          backgroundColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.black),
           
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 import 'package:flutter_sns_form/src/pages/register_lost_pet.dart';
-
+import 'package:flutter_sns_form/src/components/image_data.dart';
 class MypetList extends StatefulWidget {
   @override
   _MypetListState createState() => _MypetListState();
@@ -30,7 +30,7 @@ class _MypetListState extends State<MypetList> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/animal/mylist/');
+          'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/animals/mylist/');
       if (response.statusCode == 200) {
         print("Success: ${response.data}");
         var animalInfo = response.data;
@@ -54,37 +54,76 @@ class _MypetListState extends State<MypetList> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('내 펫 리스트',style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            )),
-        
-      ),
-      backgroundColor: Color.fromARGB(149, 51, 77, 143),
-      body: Center(
-        child: ListView.builder(
-          itemCount: nicknamePets.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                onTap: () => navigateToNextPage(
-                    nicknamePets[index],
-                    petchracteristics[index],
-                    mainimageUrls[index],
-                    animalids[index]),
-                title: Text('동물 닉네임: ${nicknamePets[index]}'),
-              ),
-            );
-          },
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      elevation: 0,
+      centerTitle: true,
+      title: ImageData(IconsPath.mylist,width:270),
+      /* Text(
+        '내 펫 리스트',
+        style: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: const Color.fromARGB(138, 15, 179, 133),
         ),
+      ),*/
+
+    ),
+    backgroundColor: Colors.white,
+    body: Center(
+      child: ListView.builder(
+        itemCount: nicknamePets.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Card(
+              child: InkWell(
+                onTap: () => navigateToNextPage(
+                  nicknamePets[index],
+                  petchracteristics[index],
+                  mainimageUrls[index],
+                  animalids[index],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0), // 원하는 둥근 정도 설정
+                  child: Stack(
+                    children: [
+                      // 이미지 추가
+                      Image.asset(
+                        "assets/images/mybar4.jpg",
+                        width: double.infinity,
+                        height: 60,
+                        fit: BoxFit.cover,
+                      ),
+                      // 텍스트 추가
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: ListTile(
+                          title: Text(
+                            '동물 닉네임: ${nicknamePets[index]}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   void navigateToNextPage(
       String nicknamePet, String petchracteristic, String imageUrl, String animalid) {

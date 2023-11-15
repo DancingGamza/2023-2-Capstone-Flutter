@@ -63,7 +63,7 @@ class _RegisterPetState extends State<RegisterPet> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(149, 51, 77, 143),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 111, 174, 186),
       ),
       home: Scaffold(
         body: ListView(
@@ -109,7 +109,7 @@ class RegisteringPet extends StatelessWidget {
           width: 375,
           height: 812,
           clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(color: Color(0xFF334D8F)),
+          decoration: BoxDecoration(color: Color.fromARGB(255, 111, 174, 186)),
           child: Stack(
             children: [
               Positioned(
@@ -131,135 +131,174 @@ class RegisteringPet extends StatelessWidget {
                 top: 255,
                 child: Container(
                   width: 376,
-                  height: 513,
-                  decoration: BoxDecoration(color: Colors.white),
+                  height: 425,
+                  decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(30),),
+                 
                 ),
               ),
               
               Positioned(
-                left: 19,
-                top: 545,
-                child: Container(
-                  width: 335,
-                  height: 71,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 335,
-                          padding: const EdgeInsets.only(top: 22),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  //height: double.infinity,
-                                  height: null,
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Container(width: 24, height: 24),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+  left: 19,
+  top: 545,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        width: 335,
+        height: 71,
+        child: Stack(
+          children: [
+            Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                width: 335,
+                padding: const EdgeInsets.only(top: 22),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: null,
+                        padding: const EdgeInsets.all(15),
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
+                            borderRadius: BorderRadius.circular(6),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        left: 127,
-                        top: 0,
-                        child: Text(
-                          '주인 전화번호: $ownerPhoneNumber',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(width: 24, height: 24),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
+            ),
+            Positioned(
+              left: 127,
+              top: 0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center, // Center-align vertically
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '주인 전화번호',
+                    style: TextStyle(
+                      color: Color.fromARGB(138, 15, 179, 133),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+                      fontFamily: 'Inter',
+                      //fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                  SizedBox(height: 10), // Adjust the spacing between text and box as needed
+                  Text(
+                    '$ownerPhoneNumber',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
+),
               Positioned(
-                left: 19,
-                top: 451,
-                child: Container(
-                  width: 335,
-                  height: 71,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 335,
-                          padding: const EdgeInsets.only(top: 22),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  //height: double.infinity,
-                                  height: null,
-                                  padding: const EdgeInsets.all(15),
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Container(width: 24, height: 24),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+  left: 19,
+  top: 451,
+  child: Container(
+    width: 335,
+    height: 71,
+    child: Stack(
+      children: [
+        Positioned(
+          left: 0,
+          top: 0,
+          child: Container(
+            width: 335,
+            padding: const EdgeInsets.only(top: 22),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: null,
+                    padding: const EdgeInsets.all(15),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                      Positioned(
-                        left: 127,
-                        top: 0,
-                        child: Text(
-                          '펫 특징: $petchracteristic',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(width: 24, height: 24),
+                      ],
+                    ),
                   ),
                 ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          left: 127,
+          top: 0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '반려동물 특징',
+                style: TextStyle(
+                  color: Color.fromARGB(138, 15, 179, 133),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+                  fontFamily: 'Inter',
+                  //fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
               ),
+              SizedBox(height: 10),  // Add some spacing between the label and the actual text
+              Text(
+                '$petchracteristic',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+),
 
 
 
@@ -277,24 +316,27 @@ class RegisteringPet extends StatelessWidget {
   left: 20,
   top: 362,
   child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Padding(
         padding: const EdgeInsets.only(bottom: 5),
         child: Text(
-          '반려동물 실종위치',
+          '실종위치',
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 14,
+            color: Color.fromARGB(138, 15, 179, 133),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
             fontFamily: 'Inter',
-            fontWeight: FontWeight.w400,
+            //fontWeight: FontWeight.w400,
             height: 0,
           ),
+          textAlign: TextAlign.center, // Center align the text
         ),
+        
       ),
       Container(
         width: 335,
-        height: 45, // Adjust the height as needed
+        height: 45,
         child: Stack(
           children: [
             Positioned(
@@ -302,7 +344,7 @@ class RegisteringPet extends StatelessWidget {
               top: 0,
               child: Container(
                 width: 335,
-                padding: const EdgeInsets.only(top: 8), // Adjust the top padding as needed
+                padding: const EdgeInsets.only(top: 8),
                 decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Color(0xFFC8D1E1)),
                   borderRadius: BorderRadius.circular(6),
@@ -316,11 +358,12 @@ class RegisteringPet extends StatelessWidget {
                     // and assign the value to it.
                     // String petFeature = value;
                   },
-                  style: TextStyle(color: Colors.black), // Set text color to black
+                  style: TextStyle(color: Colors.black),
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15), // Adjust padding as needed
-                    hintText: '실종위치 입력하세요',
-                    hintStyle: TextStyle(color: Colors.grey), // Set hint text color
+                    contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                    hintText: '실종위치를 입력하세요',
+                    hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none,
                   ),
                 ),
@@ -333,116 +376,122 @@ class RegisteringPet extends StatelessWidget {
   ),
 ),
               Positioned(
-                left: 19,
-                top: 273,
-                child: Container(
-                  width: 336,
-                  height: 71,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 336,
-                        height: 71,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 1,
-                              top: 0,
-                              child: Container(
-                                width: 335,
-                                height: 71,
-                                padding: const EdgeInsets.only(top: 22),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        //height: double.infinity,
-                                        height:null,
-                                        padding: const EdgeInsets.all(15),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(width: 24, height: 24),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                width: 335,
-                                height: 71,
-                                padding: const EdgeInsets.only(top: 22),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        //height: double.infinity,
-                                        height: null,
-                                        padding: const EdgeInsets.all(15),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(width: 24, height: 24),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 127,
-                              top: 0,
-                              child: Text(
-                                 '반려동물 이름: $petName',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+  left: 19,
+  top: 273,
+  child: Container(
+
+    width: 336,
+    height: 71,
+    child: Stack(
+      children: [
+        //SizedBox(height: 7),
+        Positioned(
+          left: 1,
+          top: 0,
+          child: Container(
+            width: 335,
+            height: 71,
+            padding: const EdgeInsets.only(top: 22),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: null,
+                    padding: const EdgeInsets.all(15),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                    ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(width: 24, height: 24),
+                      ],
+                    ),
                   ),
                 ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          child: Container(
+            width: 335,
+            height: 71,
+            padding: const EdgeInsets.only(top: 22),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: null,
+                    padding: const EdgeInsets.all(15),
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(width: 24, height: 24),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          left: 127,
+          top: 0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '반려동물이름',
+                style: TextStyle(
+                  color: Color.fromARGB(138, 15, 179, 133),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+                  fontFamily: 'Inter',
+                  //fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
               ),
+              SizedBox(height: 7),
+              Text(
+                '$petName',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+),
               Positioned(
   left: 160,
   bottom: 140, // Adjust the bottom position as needed
@@ -457,7 +506,7 @@ class RegisteringPet extends StatelessWidget {
     },
     child: Text('신고', style: TextStyle(fontSize: 16)),
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.red, // Set button background color
+      backgroundColor: Color.fromARGB(255, 111, 174, 186), // Set button background color
       foregroundColor: Colors.white, // Set text color
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8), // Set button border radius

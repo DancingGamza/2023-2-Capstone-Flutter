@@ -16,7 +16,7 @@ class App extends GetView<BottomNavController> {
     return WillPopScope(
       child: Obx(
         () => Scaffold(
-          backgroundColor: Color.fromARGB(149, 51, 77, 143),
+          backgroundColor: Colors.white,
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
@@ -61,14 +61,8 @@ class App extends GetView<BottomNavController> {
                   label: 'home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 87, 65, 65),
-                    ),
-                  ),
+                   icon: ImageData(IconsPath.personOff),
+                  activeIcon: ImageData(IconsPath.personOn),
                   label: 'home',
                 ),
               ],
