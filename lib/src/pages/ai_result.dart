@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 import 'package:flutter_sns_form/src/pages/register_lost_pet.dart';
-
-class MypetList extends StatefulWidget {
+void main() {
+  runApp(AIResult());
+}
+class AIResult extends StatefulWidget {
   @override
-  _MypetListState createState() => _MypetListState();
+  _AIResultState createState() => _AIResultState();
 }
 
-class _MypetListState extends State<MypetList> {
+class _AIResultState extends State<AIResult> {
   final Dio dio = Dio();
   final String token = globalToken;
   List<String> nicknamePets = [];
   List<String> petchracteristics = [];
   List<String> mainimageUrls = [];
   List<String> animalids = [];
+ 
 
   @override
   void initState() {
@@ -30,7 +33,7 @@ class _MypetListState extends State<MypetList> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/animal/mylist/');
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/mylist/');
       if (response.statusCode == 200) {
         print("Success: ${response.data}");
         var animalInfo = response.data;
@@ -58,7 +61,7 @@ class _MypetListState extends State<MypetList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('내 펫 리스트',style: TextStyle(
+        title: Text('AI와 유사율 높은 펫',style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
               color: Colors.white,

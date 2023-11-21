@@ -27,13 +27,13 @@ class _HomeState extends State<Home> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/posts/feeds/');
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/posts/feeds/');
       if (response.statusCode == 200) {
         setState(() {
           for(var feed in response.data['feeds']){
             var post = feed['post'];
             content = post['content'];
-            imageUrl = "http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/media/" + post['main_img'];
+            imageUrl = "http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" + post['main_img'];
             //print(imageUrl);
             //print(content);
           }
