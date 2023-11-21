@@ -42,7 +42,7 @@ class _SigningUpState extends State<SigningUp> {
     try {
       Response response = await dio
           .post(
-              'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/users/signup/',
+              'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/signup/',
               data: formData)
           .catchError((onError) {
         print("회원가입실패");
@@ -56,7 +56,7 @@ class _SigningUpState extends State<SigningUp> {
     }
     print("bbbbbbbbbbbbbbbb");
     response = await dio.post(
-        'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/users/signup/',
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/signup/',
         data: formData);
 
     print("lllll");
@@ -99,7 +99,7 @@ class _SigningUpState extends State<SigningUp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
+        scaffoldBackgroundColor: Color.fromARGB(255, 111, 174, 186),
       ),
       home: Scaffold(
         body: ListView(
@@ -128,7 +128,7 @@ class _SigningUpState extends State<SigningUp> {
         width: 375,
         height: 812,
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(color: Color(0xFF334D8F)),
+        decoration: BoxDecoration(color: Color.fromARGB(255, 111, 174, 186)),
         child: Stack(
           children: [
             Positioned(
@@ -191,7 +191,7 @@ class _SigningUpState extends State<SigningUp> {
                                           style: TextStyle(
                                             color: Color(0xFF474A56),
                                             fontSize: 14,
-                                            fontFamily: 'Mazzard',
+                                            fontFamily: 'DungGeunMo',
                                             fontWeight: FontWeight.w500,
                                             height: 0,
                                           ),
@@ -253,11 +253,11 @@ class _SigningUpState extends State<SigningUp> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Nickname',
+                                                'Name',
                                                 style: TextStyle(
                                                   color: Color(0xFF474A56),
                                                   fontSize: 14,
-                                                  fontFamily: 'Mazzard',
+                                                  fontFamily: 'DungGeunMo',
                                                   fontWeight: FontWeight.w500,
                                                   height: 0,
                                                 ),
@@ -291,7 +291,7 @@ class _SigningUpState extends State<SigningUp> {
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText:
-                                                        'Enter your nickname',
+                                                        'Enter your name',
                                                     hintStyle: TextStyle(
                                                       color: Color(0xFFC8D1E1),
                                                       fontSize: 14,
@@ -330,7 +330,7 @@ class _SigningUpState extends State<SigningUp> {
                                                         color:
                                                             Color(0xFF474A56),
                                                         fontSize: 14,
-                                                        fontFamily: 'Mazzard',
+                                                        fontFamily: 'DungGeunMo',
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         height: 0,
@@ -419,7 +419,7 @@ class _SigningUpState extends State<SigningUp> {
                                                         color:
                                                             Color(0xFF474A56),
                                                         fontSize: 14,
-                                                        fontFamily: 'Mazzard',
+                                                        fontFamily: 'DungGeunMo',
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         height: 0,
@@ -510,7 +510,7 @@ class _SigningUpState extends State<SigningUp> {
                                           style: TextStyle(
                                             color: Color(0xFF474A56),
                                             fontSize: 14,
-                                            fontFamily: 'Mazzard',
+                                            fontFamily: 'DungGeunMo',
                                             fontWeight: FontWeight.w500,
                                             height: 0,
                                           ),
@@ -581,57 +581,54 @@ class _SigningUpState extends State<SigningUp> {
                                               color: Colors
                                                   .black, // 텍스트를 투명하게 만듭니다.
                                               fontSize: 16,
-                                              fontFamily: 'Mazzard',
+                                              fontFamily: 'DungGeunMo',
                                               fontWeight: FontWeight.w500,
                                               height: 0,
                                             ),
                                           ),
                                         ),
                                         const SizedBox(height: 18),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 50,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 15),
-                                          decoration: ShapeDecoration(
-                                            color: Color(0xFF334D8F),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6)),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  print("버튼눌림");
-                                                  signupUser(
-                                                      emailController.text,
-                                                      nicknameController.text,
-                                                      passwordController.text,
-                                                      pwagainController.text,
-                                                      phonenumberController
-                                                          .text);
-                                                  print("위에거");
-                                                },
-                                                child: Text(
-                                                  'Sign up',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontFamily: 'Mazzard',
-                                                    fontWeight: FontWeight.w500,
-                                                    height: 0,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        GestureDetector(
+  onTap: () {
+    print("Container가 눌림");
+    signupUser(
+      emailController.text,
+      nicknameController.text,
+      passwordController.text,
+      pwagainController.text,
+      phonenumberController.text,
+    );
+    print("위에거");
+  },
+  child: Container(
+    width: double.infinity,
+    height: 50,
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    decoration: ShapeDecoration(
+      color: Color.fromARGB(255, 111, 174, 186),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6),
+      ),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Sign up',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontFamily: 'DungGeunMo',
+            fontWeight: FontWeight.w500,
+            height: 0,
+          ),
+        ),
+      ],
+    ),
+  ),
+),
                                       ],
                                     ),
                                   ),
@@ -655,7 +652,7 @@ class _SigningUpState extends State<SigningUp> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
-                    fontFamily: 'Mazzard',
+                    fontFamily: 'DungGeunMo',
                     fontWeight: FontWeight.w500,
                     height: 0.07,
                   ),

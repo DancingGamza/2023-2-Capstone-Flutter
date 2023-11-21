@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/pages/catch_pet.dart';
 import 'package:flutter_sns_form/src/pages/mypet_list.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
+import 'package:flutter_sns_form/src/pages/new_catch_pet.dart';
+
 class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);
 
   void _navigateToFirstPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CatchPet(),
+      //builder: (context) => CatchPet(),
+      //builder: (context) => HardPet(),
+      builder: (context) => HardPet(),
     ));
   }
 

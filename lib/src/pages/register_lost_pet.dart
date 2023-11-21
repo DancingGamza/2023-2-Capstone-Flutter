@@ -41,7 +41,7 @@ class _RegisterPetState extends State<RegisterPet> {
 
     try {
       Response response = await dio.post(
-        'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/posts/missing/alert/',
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/posts/missing/alert/',
         data: formData,
       );
 

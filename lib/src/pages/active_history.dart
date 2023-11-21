@@ -339,7 +339,7 @@ Widget _activeitemFive() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '재영',
+                    '지수',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -518,7 +518,7 @@ Widget _activeitemSix() {
       appBar: AppBar(
         elevation:0,
         centerTitle:true,
-        title:ImageData(IconsPath.upfootprint,width:270),
+        title:ImageData(IconsPath.upfootprint,width:200),
         /*
         title: const Text(
           '활동',

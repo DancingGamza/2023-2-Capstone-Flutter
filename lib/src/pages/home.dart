@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:flutter_sns_form/src/components/post_widget.dart';
@@ -13,7 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final token1 = globalToken;
-
+  
   Future<void> requestFeed() async {
     final dio = Dio();
     String imageUrl = '';
@@ -26,13 +27,13 @@ class _HomeState extends State<Home> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/posts/feeds/');
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/posts/feeds/');
       if (response.statusCode == 200) {
         setState(() {
           for(var feed in response.data['feeds']){
             var post = feed['post'];
             content = post['content'];
-            imageUrl = "http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/media/" + post['main_img'];
+            imageUrl = "http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" + post['main_img'];
             //print(imageUrl);
             //print(content);
           }

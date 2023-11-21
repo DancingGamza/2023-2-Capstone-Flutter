@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_sns_form/src/pages/new_check_pic.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sns_form/src/pages/check_pic.dart';
 
-/*
-class CatchPet extends StatelessWidget {
+
+class HardPet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CatchPetPage(),
+      home: HardPetPage(),
     );
   }
 }
 
-class CatchPetPage extends StatefulWidget {
+class HardPetPage extends StatefulWidget {
   @override
-  _CatchPetPageState createState() => _CatchPetPageState();
+  _HardPetPageState createState() => _HardPetPageState();
 }
 
-class _CatchPetPageState extends State<CatchPetPage> {
+class _HardPetPageState extends State<HardPetPage> {
   CameraController? _controller;
   late String _imagePath;
 
@@ -59,7 +60,7 @@ class _CatchPetPageState extends State<CatchPetPage> {
       // 이미지 경로를 MatchList에 전달
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => MatchList(imagePath: savedImage.path),
+          builder: (context) => HardList(imagePath: savedImage.path),
         ),
       );
     } catch (e) {
@@ -96,4 +97,3 @@ class _CatchPetPageState extends State<CatchPetPage> {
     );
   }
 }
-*/

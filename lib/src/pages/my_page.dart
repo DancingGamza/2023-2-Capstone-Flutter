@@ -32,7 +32,7 @@ class _MyPageState extends State<MyPage> {
     };
 
     try {
-      Response response = await dio.get('http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/users/info/');
+      Response response = await dio.get('http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/info/');
       if (response.statusCode == 200) {
         print("Success: ${response.data}");
         var userInfo = response.data;

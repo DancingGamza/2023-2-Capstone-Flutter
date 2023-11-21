@@ -62,7 +62,7 @@ class _PostWidgetState extends State<PostWidget> {
         children: [
           AvatarWidget(
             type: AvatarType.TYPE2,
-            nickname: 'YunaPark',
+            nickname: ' YunaPark',
             size: 40,
             thumbPath: //imageUrl,
                 'https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg',

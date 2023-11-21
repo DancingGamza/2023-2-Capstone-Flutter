@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:flutter_sns_form/src/controller/bottom_nav_controller.dart';
+import 'package:flutter_sns_form/src/pages/new_home.dart';
 import 'package:get/get.dart';
 import 'package:flutter_sns_form/src/pages/home.dart';
 import 'package:flutter_sns_form/src/pages/search.dart';
@@ -20,7 +21,7 @@ class App extends GetView<BottomNavController> {
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-              Home(),
+              NewHome(),
               const Search(),
               Container(),
               const ActiveHistory(),
