@@ -1,80 +1,108 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:flutter_sns_form/src/pages/login.dart';
 void main() {
   runApp(NewHome());
 }
 
-class NewHome extends StatelessWidget {
+class NewHome extends StatefulWidget {
+  @override
+  _NewHomeState createState() => _NewHomeState();
+}
+
+class _NewHomeState extends State<NewHome> {
+  List<PostData> postData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    const  String apiUrl = 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/feed';
+    final Dio dio = Dio();
+
+    try {
+      print("new home try는 들어옴");
+      Response response = await dio.get(
+        apiUrl,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+      'Content-Type': 'multipart/form-data',
+          },
+        ),
+      );
+    print("try위에 수정");
+      Map<String, dynamic> responseData = json.decode(response.toString());
+
+      List<dynamic> posts = responseData['data'];
+      List<PostData> tempData = posts.map((post) => PostData.fromJson(post)).toList();
+
+      setState(() {
+        postData = tempData;
+      });
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        
-        body: ListView(
-          children: [
-            HomeCard(
-              userProfileImage: 'assets/images/dog1.jpg',
-              username: 'yuna',
-              postImages: [
-                'assets/images/bbobbi18.jpg',
-                'assets/images/bbobbi18.jpg',
-                // Add more image paths as needed
-              ],
-              cardBackgroundImage: 'assets/images/pattern.JPG',
-              likes: 30,
-              postContent: '뽀삐뽀삐뽀 뽀삐뽀',
-            ),
-            SizedBox(height: 16),
-            HomeCard(
-              userProfileImage: 'assets/images/dog2.jpg',
-              username: 'cjy',
-              postImages: [
-                'assets/images/fox7.jpg',
-                'assets/images/fox7.jpg',
-                // Add more image paths as needed
-              ],
-              cardBackgroundImage: 'assets/images/pattern.JPG',
-              likes: 30,
-              postContent: '여우여우여우영우',
-            ),
-            SizedBox(height: 16),
-            HomeCard(
+        body: ListView.builder(
+          itemCount: postData.length,
+          itemBuilder: (BuildContext context, int index) {
+            return HomeCard(
               userProfileImage: 'assets/images/dog3.jpg',
-              username: 'james',
-              postImages: [
-                'assets/images/poppy2.jpg',
-                'assets/images/poppy2.jpg',
-                // Add more image paths as needed
-              ],
+              username: 'yunna',
+              postImages: postData[index].images,
               cardBackgroundImage: 'assets/images/pattern.JPG',
-              likes: 30,
-              postContent: '역시 시츄는 시츄',
-            ),
-            SizedBox(height: 16),
-            HomeCard(
-              userProfileImage: 'assets/images/dog4.jpg',
-              username: 'doglover',
-              postImages: [
-                'assets/images/poppy.jpg',
-                'assets/images/poppy.jpg',
-                // Add more image paths as needed
-              ],
-              cardBackgroundImage: 'assets/images/pattern.JPG',
-              likes: 30,
-              postContent: '기여운 말티쮸',
-            ),
-          ],
+              likes: postData[index].likeCount,
+              postContent: postData[index].content,
+            );
+          },
         ),
       ),
     );
   }
 }
 
-class HomeCard extends StatefulWidget {
+class PostData {
+  final int likeCount;
+  final String content;
+  final List<String> images;
+  final String registerId;
+  final String registerDate;
+
+  PostData({
+    required this.likeCount,
+    required this.content,
+    required this.images,
+    required this.registerId,
+    required this.registerDate,
+  });
+
+  factory PostData.fromJson(Map<String, dynamic> json) {
+    return PostData(
+      likeCount: json['post']['like_count'],
+      content: json['post']['content'],
+      images: json['images'].map<String>((image) {
+        return 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com' + image['image'];
+      }).toList(),
+      registerId: json['post']['register_id'],
+      registerDate: json['post']['register_date'],
+    );
+  }
+}
+
+class HomeCard extends StatelessWidget {
   final String userProfileImage;
   final String username;
-  final List<String> postImages; // Change to a list of image paths
+  final List<String> postImages;
   final String cardBackgroundImage;
   final int likes;
   final String postContent;
@@ -89,15 +117,6 @@ class HomeCard extends StatefulWidget {
   });
 
   @override
-  _HomeCardState createState() => _HomeCardState();
-}
-
-class _HomeCardState extends State<HomeCard> {
-  PageController _pageController = PageController();
-  bool isLiked = false;
-  int likeCount = 0;
-
-  @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
@@ -107,21 +126,20 @@ class _HomeCardState extends State<HomeCard> {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(widget.userProfileImage),
+              backgroundImage: AssetImage(userProfileImage),
             ),
-            title: Text(widget.username, style: TextStyle(fontFamily: 'DungGeunMo')),
+            title: Text(username),
           ),
           SizedBox(
-            height: 400, // Adjust the height according to your design
+            height: 400,
             child: PageView.builder(
-              controller: _pageController,
-              itemCount: widget.postImages.length,
+              itemCount: postImages.length,
               itemBuilder: (BuildContext context, int index) {
-                return Image.asset(
-                  widget.postImages[index],
-                  fit: BoxFit.cover, // Use BoxFit.cover to maintain aspect ratio and cover the entire square
-                  width: double.infinity, // Make sure the image takes the entire width
-                  height: double.infinity, // Make sure the image takes the entire height
+                return Image.network(
+                  postImages[index],
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
                 );
               },
             ),
@@ -132,26 +150,20 @@ class _HomeCardState extends State<HomeCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Image.asset(isLiked ? 'assets/images/liked_papaw.png' : 'assets/images/papaw.png', width: 50),
+                  icon: Image.asset('assets/images/liked_papaw.png', width: 50),
                   onPressed: () {
-                    if (!isLiked) {
-                      // Like button pressed
-                      setState(() {
-                        isLiked = true;
-                        likeCount += 1;
-                      });
-                    }
+                    // Handle like button pressed
                   },
                 ),
-                Text('$likeCount 발자국', style: TextStyle(fontFamily: 'DungGeunMo')),
+                Text('$likes 발자국'),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              widget.postContent,
-              style: TextStyle(fontSize: 16, fontFamily: 'DungGeunMo'),
+              postContent,
+              style: TextStyle(fontSize: 16),
             ),
           ),
         ],
