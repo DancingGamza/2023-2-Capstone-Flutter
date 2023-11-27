@@ -254,24 +254,24 @@ class ProfileCard extends StatelessWidget {
                   // 추가적인 정보를 표시할 수 있습니다.
                 ],
               ),
-              //),
-              // SizedBox(width: 90.0),
-              // // '>' 버튼
-              // Positioned(
-              //   top: 100.0, // 원하는 위치 조절
-              //   right: 100.0, // 원하는 위치 조절
-              //   child: GestureDetector(
-              //     onTap: () {
-              //       // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
-              //       // Navigator.push(
-              //       //   context,
-              //       //   MaterialPageRoute(builder: (context) => ProfileEditPage()),
-              //       // );
-              //       print(">눌림2");
-              //     },
-              //     child: Icon(Icons.arrow_forward),
-              //   ),
-              // ),
+              
+              SizedBox(width: 80.0),
+              // '>' 버튼
+              Positioned(
+                top: 100.0, // 원하는 위치 조절
+                right: 100.0, // 원하는 위치 조절
+                child: GestureDetector(
+                  onTap: () {
+                    // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => ProfileEditPage()),
+                    // );
+                    print(">눌림2");
+                  },
+                  child: Icon(Icons.arrow_forward),
+                ),
+              ),
             ],
           ),
         ));

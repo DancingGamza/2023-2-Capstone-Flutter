@@ -21,21 +21,21 @@ class _NewHomeState extends State<NewHome> {
   }
 
   Future<void> fetchData() async {
-    const  String apiUrl = 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/feed';
+    const String apiUrl = 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/feed';
     final Dio dio = Dio();
 
     try {
-      print("new home try는 들어옴");
+      print("Fetching data...");
       Response response = await dio.get(
         apiUrl,
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',
-      'Content-Type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         ),
       );
-    print("try위에 수정");
+
       Map<String, dynamic> responseData = json.decode(response.toString());
 
       List<dynamic> posts = responseData['data'];
@@ -56,14 +56,7 @@ class _NewHomeState extends State<NewHome> {
         body: ListView.builder(
           itemCount: postData.length,
           itemBuilder: (BuildContext context, int index) {
-            return HomeCard(
-              userProfileImage: 'assets/images/dog3.jpg',
-              username: 'yunna',
-              postImages: postData[index].images,
-              cardBackgroundImage: 'assets/images/pattern.JPG',
-              likes: postData[index].likeCount,
-              postContent: postData[index].content,
-            );
+            return HomeCard(postData: postData[index]);
           },
         ),
       ),
@@ -75,15 +68,13 @@ class PostData {
   final int likeCount;
   final String content;
   final List<String> images;
-  final String registerId;
-  final String registerDate;
+  final UserData user;
 
   PostData({
     required this.likeCount,
     required this.content,
     required this.images,
-    required this.registerId,
-    required this.registerDate,
+    required this.user,
   });
 
   factory PostData.fromJson(Map<String, dynamic> json) {
@@ -93,28 +84,32 @@ class PostData {
       images: json['images'].map<String>((image) {
         return 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com' + image['image'];
       }).toList(),
-      registerId: json['post']['register_id'],
-      registerDate: json['post']['register_date'],
+      user: UserData.fromJson(json['user']),
+    );
+  }
+}
+
+class UserData {
+  final String username;
+  final String? profileImage;
+
+  UserData({
+    required this.username,
+    this.profileImage,
+  });
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(
+      username: json['username'],
+      profileImage: json['profile_image'],
     );
   }
 }
 
 class HomeCard extends StatelessWidget {
-  final String userProfileImage;
-  final String username;
-  final List<String> postImages;
-  final String cardBackgroundImage;
-  final int likes;
-  final String postContent;
+  final PostData postData;
 
-  HomeCard({
-    required this.userProfileImage,
-    required this.username,
-    required this.postImages,
-    required this.cardBackgroundImage,
-    required this.likes,
-    required this.postContent,
-  });
+  HomeCard({required this.postData});
 
   @override
   Widget build(BuildContext context) {
@@ -126,17 +121,17 @@ class HomeCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(userProfileImage),
+              backgroundImage: AssetImage(postData.user.profileImage ?? 'assets/images/dog3.jpg'),
             ),
-            title: Text(username),
+            title: Text(postData.user.username),
           ),
           SizedBox(
             height: 400,
             child: PageView.builder(
-              itemCount: postImages.length,
+              itemCount: postData.images.length,
               itemBuilder: (BuildContext context, int index) {
                 return Image.network(
-                  postImages[index],
+                  postData.images[index],
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,
@@ -155,14 +150,14 @@ class HomeCard extends StatelessWidget {
                     // Handle like button pressed
                   },
                 ),
-                Text('$likes 발자국'),
+                Text('${postData.likeCount} 발자국'),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              postContent,
+              postData.content,
               style: TextStyle(fontSize: 16),
             ),
           ),
