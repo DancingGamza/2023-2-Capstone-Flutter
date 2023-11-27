@@ -2,29 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 import 'package:flutter_sns_form/src/pages/my_page.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter_sns_form/src/app.dart';
 
-class RegisterPet extends StatefulWidget {
+class FixPetInfo extends StatefulWidget {
   final String petName;
   final String petchracteristic;
   final String imageUrl;
   final String animalid;
   
-  RegisterPet({
+  FixPetInfo({
     Key? key,
     required this.petName,
     required this.petchracteristic,
     required this.imageUrl,
     required this.animalid,
   }) : super(key: key);
-  
+
   @override
-  _RegisterPetState createState() => _RegisterPetState();
+  _FixPetInfoState createState() => _FixPetInfoState();
 }
 
-class _RegisterPetState extends State<RegisterPet> {
+class _FixPetInfoState extends State<FixPetInfo> {
   final TextEditingController location_Controller = TextEditingController();
   final String token=globalToken;
   Future<void> reporting(animalid, location) async {
@@ -41,7 +39,7 @@ class _RegisterPetState extends State<RegisterPet> {
 
     try {
       Response response = await dio.post(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/alert',
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/posts/missing/alert/',
         data: formData,
       );
 
@@ -61,6 +59,7 @@ class _RegisterPetState extends State<RegisterPet> {
 
   @override
   Widget build(BuildContext context) {
+    print("ImageUrl: ${widget.imageUrl}");
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color.fromARGB(255, 111, 174, 186),
@@ -68,7 +67,7 @@ class _RegisterPetState extends State<RegisterPet> {
       home: Scaffold(
         body: ListView(
           children: [
-            RegisteringPet(
+            FixingPetInfo(
               petName: widget.petName,
               petchracteristic: widget.petchracteristic,
               imageUrl: widget.imageUrl,
@@ -83,7 +82,7 @@ class _RegisterPetState extends State<RegisterPet> {
   }
 }
 
-class RegisteringPet extends StatelessWidget {
+class FixingPetInfo extends StatelessWidget {
   final String petName;
   final String petchracteristic;
   final String imageUrl;
@@ -92,7 +91,7 @@ class RegisteringPet extends StatelessWidget {
   final String ownerPhoneNumber = globalNumber;
   final String animalid;
 
-  RegisteringPet({
+  FixingPetInfo({
     Key? key,
     required this.petName,
     required this.petchracteristic,
@@ -113,20 +112,20 @@ class RegisteringPet extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-  left: 93,
-  top: 50,
-  child: Container(
-    width: 189,
-    height: 184,
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: NetworkImage(imageUrl),
-        fit: BoxFit.fill,
-        
-      ),
-    ),
-  ),
-),
+                left: 93,
+                top: 50,
+                child: Container(
+                  
+                  width: 189,
+                  height: 184,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(imageUrl),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ),
               Positioned(
                 left: -1,
                 top: 255,
@@ -478,7 +477,6 @@ class RegisteringPet extends StatelessWidget {
               SizedBox(height: 7),
               Text(
                 '$petName',
-               
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
@@ -506,7 +504,7 @@ class RegisteringPet extends StatelessWidget {
       // For now, I'm just printing a message
       print('신고 button clicked');
     },
-    child: Text('신고', style: TextStyle(fontSize: 16)),
+    child: Text('등록', style: TextStyle(fontSize: 16)),
     style: ElevatedButton.styleFrom(
       backgroundColor: Color.fromARGB(255, 111, 174, 186), // Set button background color
       foregroundColor: Colors.white, // Set text color

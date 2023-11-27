@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_sns_form/src/pages/fix_pet_list.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 
 String globalUser = '';
@@ -34,24 +35,29 @@ class _MyPageState extends State<MyPage> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/info/');
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/user/info');
       if (response.statusCode == 200) {
+        print("$response");
+        print("이건 성공");
+        
         print("Success: ${response.data}");
         var userInfo = response.data;
-        username = userInfo['username'];
+        username = userInfo['data']['username'];
         globalUser = username;
         print("Success: $username");
-        nickname = userInfo['nickname'];
+        nickname = userInfo['data']['nickname'];
         globalNickname = nickname;
-        phone_number = userInfo['phone_number'];
+        phone_number = userInfo['data']['phone_number'];
         globalNumber = phone_number;
-        register_date = userInfo['register_date'];
+        register_date = userInfo['data']['register_date'];
         // 이후 필요한 작업을 수행하실 수 있습니다.
       } else if (response.statusCode == 401) {
         print("Authentication Error: ${response.data}");
         // 인증 실패나 토큰 오류에 대한 처리를 여기에 추가하세요.
       }
     } catch (e) {
+      
+      print("이건 실패");
       print("Error: $e");
     }
   }
@@ -187,11 +193,64 @@ class ProfileCard extends StatelessWidget {
                   //     fontWeight: FontWeight.bold,
                   //   ),
                   // ),
-                  SizedBox(height: 8.0),
+                  //SizedBox(height: 6.0),
                   // 여기에 프로필 정보를 나타내는 위젯들을 추가하세요.
-                  Text('ID: $globalUser'),
-                  Text('이름: $globalNickname'),
-                  Text('전화번호: $globalNumber'),
+                  Row(
+                    children: [
+                      Text(
+                        'ID ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '$globalUser',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      Text(
+                        '이름 ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '$globalNickname',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      Text(
+                        '전화번호 ',
+                        style: TextStyle
+                          (color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '$globalNumber',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
                   // 추가적인 정보를 표시할 수 있습니다.
                 ],
               ),
@@ -283,11 +342,11 @@ class PetCard extends StatelessWidget {
               onTap: () {
                 print("펫 >이 눌림");
                 // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
-                // Navigator.push(
-                // //   context,
-                // //   MaterialPageRoute(builder: (context) => PetEditPage()),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FixMypetList()),
 
-                // );
+                );
               },
               child: Icon(Icons.arrow_forward),
             ),

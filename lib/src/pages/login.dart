@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:dio/dio.dart'; 
+import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/app.dart';
 import 'package:flutter_sns_form/src/pages/signing_up.dart';
-var token='';
+
+var token = '';
 String globalToken = '';
 
 //void main() {
-  //runApp(FigmaToCodeApp());
+//runApp(FigmaToCodeApp());
 //}
-
 
 class LogingIn extends StatefulWidget {
   LogingIn({super.key});
@@ -22,38 +22,41 @@ class LogingIn extends StatefulWidget {
 class _LogingInState extends State<LogingIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
- 
+
   String loginMessage = '';
 
   Future<void> loginUser(username, password) async {
-    Dio dio= Dio();
-    dio.options.contentType='multipart/form-data';
+    Dio dio = Dio();
+    dio.options.contentType = 'multipart/form-data';
 
-  var formData = FormData.fromMap({
+    var formData = FormData.fromMap({
       'username': username.toString(),
       'password': password.toString(),
-  }); 
-    Response response= await dio.post('http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/login/',
-      data : formData);
-    print("lllll");
+    });
+    Response response = await dio.post(
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/user/login',
+        data: formData);
+    
     print(response);
-
+    print(response.statusCode);
+    print(response.data);
     if (response.statusCode == 200) {
-      setState(() {
-        globalToken = response.data['token'];
-        token = response.data['token']; // Replace with the actual JSON key for the token
-        //AppGlobals().setAuthToken(token);
-        //loginMessage = "로그인 성공이요";
-        loginMessage = token;
+      print("200에들어옴");
+      setState(
+        () {
+          print("set state 들어옴");
+          globalToken = response.data['data']['token'];
+          token = response.data['data']['token'];
+          loginMessage = token;
+          print("여기까진 됨");
           Navigator.of(context).pushReplacement(
-    MaterialPageRoute(
-      builder: (context) => const App(),
-    ),
-  );},);}
-     
-    else {
-      //final Map<String, dynamic> error = json.decode(response.body);
-  //print('Error Message: ${error['message']}');
+            MaterialPageRoute(
+              builder: (context) => const App(),
+            ),
+          );
+        },
+      );
+    } else {
       setState(() {
         loginMessage = "로그인 실패";
       });
@@ -70,16 +73,7 @@ class _LogingInState extends State<LogingIn> {
         body: ListView(
           children: [
             loginarea(context),
-            /*
-            ElevatedButton(
-              onPressed: () {
-                print("버튼눌림");
-                
-                loginUser(emailController.text, passwordController.text);
-                print("위에거");
-              },
-              child: Text('Log in'),
-            ),*/
+            
             Text(loginMessage, style: TextStyle(color: Colors.red)),
           ],
         ),
@@ -147,8 +141,10 @@ class _LogingInState extends State<LogingIn> {
                                     height: 71,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'ID',
@@ -166,11 +162,15 @@ class _LogingInState extends State<LogingIn> {
                                           padding: const EdgeInsets.all(15),
                                           decoration: ShapeDecoration(
                                             shape: RoundedRectangleBorder(
-                                              side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                              borderRadius: BorderRadius.circular(6),
+                                              side: BorderSide(
+                                                  width: 1,
+                                                  color: Color(0xFFC8D1E1)),
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
                                             ),
                                           ),
-                                          child: TextFormField( // Email input field
+                                          child: TextFormField(
+                                            // Email input field
                                             controller: emailController,
                                             style: TextStyle(
                                               color: Color(0xFFC8D1E1),
@@ -197,15 +197,19 @@ class _LogingInState extends State<LogingIn> {
                                   Container(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
                                         Container(
                                           height: 71,
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 'Password',
@@ -220,16 +224,25 @@ class _LogingInState extends State<LogingIn> {
                                               const SizedBox(height: 5),
                                               Container(
                                                 height: 49,
-                                                padding: const EdgeInsets.all(15),
+                                                padding:
+                                                    const EdgeInsets.all(15),
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
-                                                    side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                                                    borderRadius: BorderRadius.circular(6),
+                                                    side: BorderSide(
+                                                        width: 1,
+                                                        color:
+                                                            Color(0xFFC8D1E1)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6),
                                                   ),
                                                 ),
-                                                child: TextFormField( // Password input field
-                                                  controller: passwordController,
-                                                  obscureText: true, // Hide the entered text (for passwords)
+                                                child: TextFormField(
+                                                  // Password input field
+                                                  controller:
+                                                      passwordController,
+                                                  obscureText:
+                                                      true, // Hide the entered text (for passwords)
                                                   style: TextStyle(
                                                     color: Color(0xFFC8D1E1),
                                                     fontSize: 14,
@@ -243,7 +256,8 @@ class _LogingInState extends State<LogingIn> {
                                                       color: Color(0xFFC8D1E1),
                                                       fontSize: 14,
                                                       fontFamily: 'Mazzard',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
                                                   ),
                                                 ),
@@ -252,7 +266,6 @@ class _LogingInState extends State<LogingIn> {
                                           ),
                                         ),
                                         const SizedBox(height: 10),
-                                        
                                       ],
                                     ),
                                   ),
@@ -271,64 +284,68 @@ class _LogingInState extends State<LogingIn> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             //GestureDetector(
-                              InkWell(
-  onTap: () {
-    Navigator.of(context).pushReplacement(
-    MaterialPageRoute(
-      builder: (context) => SigningUp(),
-    ),
-  );
-    //SigningUp();
-    print("눌림ㅁㅁㅁ");
-    // "Sign up" 텍스트를 클릭할 때 수행할 작업을 처리하세요.
-    // 예를 들어, 회원 가입 페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
-  },
-  child: Text(
-    'Don’t you have an account? Sign up',
-    style: TextStyle(
-      color: Colors.black, // 텍스트를 투명하게 만듭니다.
-      fontSize: 16,
-      fontFamily: 'DungGeunMo',
-      fontWeight: FontWeight.w500,
-      height: 0,
-    ),
-  ),),
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => SigningUp(),
+                                  ),
+                                );
+                                //SigningUp();
+                                print("눌림ㅁㅁㅁ");
+                                // "Sign up" 텍스트를 클릭할 때 수행할 작업을 처리하세요.
+                                // 예를 들어, 회원 가입 페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
+                              },
+                              child: Text(
+                                'Don’t you have an account? Sign up',
+                                style: TextStyle(
+                                  color: Colors.black, // 텍스트를 투명하게 만듭니다.
+                                  fontSize: 16,
+                                  fontFamily: 'DungGeunMo',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
 //),
 
                             const SizedBox(height: 18),
-GestureDetector(
-  onTap: () {
-    print("Container가 눌림");
-    loginUser(emailController.text, passwordController.text);
-    print("위에거");
-  },
-  child: Container(
-    width: double.infinity,
-    height: 50,
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-    decoration: ShapeDecoration(
-      color: Color.fromARGB(255, 111, 174, 186),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'Log in',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontFamily: 'DungGeunMo',
-            fontWeight: FontWeight.w500,
-            height: 0,
-          ),
-        ),
-      ],
-    ),
-  ),
-),
+                            GestureDetector(
+                              onTap: () {
+                                print("Container가 눌림");
+                                loginUser(emailController.text,
+                                    passwordController.text);
+                                print("위에거");
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 50,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 15),
+                                decoration: ShapeDecoration(
+                                  color: Color.fromARGB(255, 111, 174, 186),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6)),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Log in',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontFamily: 'DungGeunMo',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -435,7 +452,6 @@ GestureDetector(
                                   ]),
                                 ),
                               ),
-                              
                             ],
                           ),
                         ),

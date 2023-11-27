@@ -26,74 +26,62 @@ class _SigningUpState extends State<SigningUp> {
   final TextEditingController phonenumberController = TextEditingController();
   String signupMessage = '';
 
-  Future<void> signupUser(
-      username, nickname, password, pwagain, phonenumber) async {
-    Dio dio = Dio();
-    dio.options.contentType = 'multipart/form-data';
+  Future<void> signupUser(username, nickname, password, pwagain, phonenumber) async {
+  Dio dio = Dio();
+  dio.options.contentType = 'multipart/form-data';
+  print(username.toString());
+  print(nickname.toString());
+  print(password.toString());
+  print(pwagain.toString());
+  print(phonenumber.toString());
+  
+  var formData = FormData.fromMap({
+    'username': username.toString(),
+    'nickname': nickname.toString(),
+    'password1': password.toString(),
+    'password2': pwagain.toString(),
+    'phone_number': phonenumber.toString(),
+  });
 
-    var formData = FormData.fromMap({
-      'username': username.toString(),
-      'nickname': nickname.toString(),
-      'password1': password.toString(),
-      'password2': pwagain.toString(),
-      'phone_number': phonenumber.toString()
-    });
-    Response response;
-    try {
-      Response response = await dio
-          .post(
-              'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/signup/',
-              data: formData)
-          .catchError((onError) {
-        print("회원가입실패");
-        setState(() {
-          signupMessage = "회원가입 실패!!";
-        });
+  try {
+    Response response = await dio.post(
+      'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/user/signup',
+      data: formData,
+    );
+
+    if (response.statusCode == 201) {
+      setState(() {
+        signupMessage = "회원가입 성공";
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LogingIn(),
+          ),
+        );
       });
-    } catch (e) {
-      print(e);
-      print("aaaaaaaaaaaaaaa");
-    }
-    print("bbbbbbbbbbbbbbbb");
-    response = await dio.post(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/users/signup/',
-        data: formData);
-
-    print("lllll");
-    print(response);
-
-    if (response.statusCode == 200) {
-      setState(
-        () {
-          signupMessage = "회원가입 성공";
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => LogingIn(),
-            ),
-          );
-        },
-      );
-    }
-
-    /*
-     if (response.statusCode == 400) {
-      setState(() {
-        print("400들어옴");
-        final Map<String, dynamic> error = response.data;
-      print('Error Message: ${error['message']}');
-        signupMessage="회원가입 실패";
-  },);}*/
-
-    else {
-      print("lksajflsadlkghdlgdhkl1");
-      setState(() {
-        print("else들어옴");
+    } else {
+      if (response.data != null && response.data is Map<String, dynamic>) {
         final Map<String, dynamic> error = response.data;
         print('Error Message: ${error['message']}');
-        signupMessage = "회원가입 실패";
-      });
+       
+        setState(() {
+          signupMessage = "회원가입 실패~~: ${error['message']}";
+          
+        });
+      } else {
+        setState(() {
+          signupMessage = "회원가입 실패~!: Unexpected response format";
+        });
+      }
     }
+  } catch (e) {
+    print("회원가입 실패ㅠㅠ: $e");
+    setState(() {
+      signupMessage = "회원가입 실패유: $e";
+      
+    });
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,16 +93,7 @@ class _SigningUpState extends State<SigningUp> {
         body: ListView(
           children: [
             signuparea(context),
-            /*
-            ElevatedButton(
-              onPressed: () {
-                print("버튼눌림");
-                
-                loginUser(emailController.text, passwordController.text);
-                print("위에거");
-              },
-              child: Text('Log in'),
-            ),*/
+            
             Text(signupMessage, style: TextStyle(color: Colors.red)),
           ],
         ),
