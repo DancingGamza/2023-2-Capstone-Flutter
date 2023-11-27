@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
-
+import 'package:dio/dio.dart';
 void main() {
   runApp(NewHome());
 }
@@ -10,14 +10,7 @@ class NewHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        //backgroundColor: Colors.white,
-        //backgroundColor: Color.fromARGB(138, 15, 179, 133) ,
-        //  appBar: AppBar(
-        //     backgroundColor: Colors.white,
-        //     elevation: 0,
-        //   centerTitle: true,
-        //   title: Image.asset('assets/images/bottom_nav_home_on_icon.jpg', width: 270),
-        //   ),
+        
         body: ListView(
           children: [
             HomeCard(
@@ -43,7 +36,7 @@ class NewHome extends StatelessWidget {
               ],
               cardBackgroundImage: 'assets/images/pattern.JPG',
               likes: 30,
-              postContent: '뽀삐뽀삐뽀 뽀삐뽀',
+              postContent: '여우여우여우영우',
             ),
             SizedBox(height: 16),
             HomeCard(
@@ -56,7 +49,7 @@ class NewHome extends StatelessWidget {
               ],
               cardBackgroundImage: 'assets/images/pattern.JPG',
               likes: 30,
-              postContent: '뽀삐뽀삐뽀 뽀삐뽀',
+              postContent: '역시 시츄는 시츄',
             ),
             SizedBox(height: 16),
             HomeCard(
@@ -69,7 +62,7 @@ class NewHome extends StatelessWidget {
               ],
               cardBackgroundImage: 'assets/images/pattern.JPG',
               likes: 30,
-              postContent: '뽀삐뽀삐뽀 뽀삐뽀',
+              postContent: '기여운 말티쮸',
             ),
           ],
         ),
