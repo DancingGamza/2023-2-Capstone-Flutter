@@ -3,7 +3,7 @@ import 'package:flutter_sns_form/src/components/image_data.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sns_form/src/pages/fix_pet_list.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
-
+import 'package:flutter_sns_form/src/pages/fix_user_info.dart';
 String globalUser = '';
 String globalNumber = '';
 String globalNickname = '';
@@ -14,6 +14,8 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  
+
   final dio = Dio();
 
   var username = '';
@@ -25,7 +27,10 @@ class _MyPageState extends State<MyPage> {
   void initState() {
     super.initState();
     requestUserInfo(token);
+    
   }
+  
+ 
 
   Future<void> requestUserInfo(String token) async {
     dio.options.headers = {
@@ -62,6 +67,13 @@ class _MyPageState extends State<MyPage> {
     }
   }
 
+  
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +89,15 @@ class _MyPageState extends State<MyPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileCard(),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyProfilePage(username:username,nickname:nickname,phoneNumber: phone_number,)),
+                );
+              },
+              child: ProfileCard(),
+            ),
             SizedBox(height: 16.0),
             PetCard(),
             SizedBox(height: 16.0),
@@ -254,44 +274,84 @@ class ProfileCard extends StatelessWidget {
                   // 추가적인 정보를 표시할 수 있습니다.
                 ],
               ),
-              
-              SizedBox(width: 80.0),
+              // ISSUE: 버튼을 추가하면 Incorrect use of ParentDataWidget 문제 발생...어케해결함ㅋㅋ
+              //SizedBox(width: 50.0),
               // '>' 버튼
-              Positioned(
-                top: 100.0, // 원하는 위치 조절
-                right: 100.0, // 원하는 위치 조절
-                child: GestureDetector(
-                  onTap: () {
-                    // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => ProfileEditPage()),
-                    // );
-                    print(">눌림2");
-                  },
-                  child: Icon(Icons.arrow_forward),
-                ),
-              ),
+              // Positioned(
+              //   top: 100.0, // 원하는 위치 조절
+              //   right: 100.0, // 원하는 위치 조절
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
+              //       // Navigator.push(
+              //       //   context,
+              //       //   MaterialPageRoute(builder: (context) => ProfileEditPage()),
+              //       // );
+              //       print(">눌림2");
+              //     },
+              //     child: Icon(Icons.arrow_forward),
+              //   ),
+              // ),
             ],
           ),
         ));
   }
 }
 
-class PetCard extends StatelessWidget {
-  final List<Map<String, dynamic>> pets = [
-    {
-      'name': 'Buddy',
-      'image':
-          'https://i.namu.wiki/i/I8KKi13EBp0nUnliM4RrrNfp_MGruxcCsLkdHPIB2HsJRSWHGs3qyJCs4w9x98kHTuIZYqOl39RsLr_GK_iGdQ.webp'
-    },
-    {
-      'name': 'Charlie',
-      'image':
-          'https://i.namu.wiki/i/I8KKi13EBp0nUnliM4RrrNfp_MGruxcCsLkdHPIB2HsJRSWHGs3qyJCs4w9x98kHTuIZYqOl39RsLr_GK_iGdQ.webp'
-    },
-    // 다른 동물에 대한 정보를 추가할 수 있습니다.
-  ];
+class PetCard extends StatefulWidget {
+  @override
+  _PetCardState createState() => _PetCardState();
+}
+
+class _PetCardState extends State<PetCard> {
+  final dio2=Dio();
+  List<String> nicknamePets = [];
+  List<String> petchracteristics = [];
+  List<String> mainimageUrls = [];
+  List<String> animalids = [];
+
+  @override
+  void initState() {
+    super.initState();
+    animalinfo(token);
+  }
+  Future<void> animalinfo(String token) async {
+    dio2.options.headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'multipart/form-data',
+    };
+
+    try {
+      print("try해봄");
+      Response response2 = await dio2.get(
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/list');
+      if (response2.statusCode == 200) {
+        print("일단 200은 옴");
+        print("Success: ${response2.data}");
+        var animalInfo = response2.data;
+        setState(() {
+          var data1 = animalInfo['data'];
+          nicknamePets = List<String>.from(
+              data1.map((animal) => animal['nickname'].toString()));
+          petchracteristics = List<String>.from(
+              data1.map((animal) => animal['characteristic'].toString()));
+          mainimageUrls = List<String>.from(
+              data1.map((animal) => animal['main_img'].toString()));
+          animalids =
+              List<String>.from(data1.map((animal) => animal['id'].toString()));
+        });
+      } else if (response2.statusCode == 401) {
+        print("Authentication Error: ${response2.data}");
+        // Handle authentication errors or token issues here.
+      }
+    } catch (e) {
+      
+      print("Error: $e");
+    }
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -314,38 +374,36 @@ class PetCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8.0),
-                // 그리드 뷰로 동물 정보를 표시
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5, // 한 줄에 다섯 마리의 동물을 표시
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
+                // Check if the data is available
+                if (nicknamePets.isNotEmpty)
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0,
+                    ),
+                    itemCount: nicknamePets.length,
+                    itemBuilder: (context, index) {
+                      return PetAvatar(
+                        petName: nicknamePets[index],
+                        petImage: 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/'+mainimageUrls[index],
+                      );
+                    },
                   ),
-                  itemCount: pets.length,
-                  itemBuilder: (context, index) {
-                    return PetAvatar(
-                      petName: pets[index]['name'],
-                      petImage: pets[index]['image'],
-                    );
-                  },
-                ),
               ],
             ),
           ),
-          // '>' 버튼
           Positioned(
-            top: 20.0, // 원하는 위치 조절
-            right: 20.0, // 원하는 위치 조절
+            top: 20.0,
+            right: 20.0,
             child: GestureDetector(
               onTap: () {
                 print("펫 >이 눌림");
-                // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => FixMypetList()),
-
                 );
               },
               child: Icon(Icons.arrow_forward),
@@ -367,13 +425,11 @@ class PetAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // 동물 사진
         CircleAvatar(
           radius: 20.0,
-          backgroundImage: NetworkImage(petImage), // 동물 사진의 URL을 넣어주세요.
+          backgroundImage: NetworkImage(petImage),
         ),
         SizedBox(height: 5.0),
-        // 동물 이름
         Flexible(
           child: Text(
             petName,

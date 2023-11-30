@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_sns_form/src/pages/fix_pet_info.dart';
+import 'package:flutter_sns_form/src/pages/new_modify_pet_info.dart';
 import 'package:flutter_sns_form/src/pages/login.dart';
 import 'package:flutter_sns_form/src/pages/fix_pet_list.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
@@ -121,19 +121,17 @@ Widget build(BuildContext context) {
 
   void navigateToNextPage(
       String nicknamePet, String petchracteristic, String imageUrl, String animalid) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => FixPetInfo(
-          key: null,
-          petName: nicknamePet,
-          petchracteristic: petchracteristic,
-          imageUrl:
-              ("http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" +
-                  imageUrl).toString(),
-          animalid: animalid,
-        ),
-      ),
-    );
+    Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => FixingMyPet(
+      petName: nicknamePet,
+      petCharacteristic: petchracteristic,
+      imageUrl: "http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" + imageUrl,
+      animalId: animalid,
+    ),
+  ),
+);
   }
 }
 
