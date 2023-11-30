@@ -25,7 +25,6 @@ class _NewHomeState extends State<NewHome> {
     final Dio dio = Dio();
 
     try {
-      print("Fetching data...");
       Response response = await dio.get(
         apiUrl,
         options: Options(
@@ -65,16 +64,18 @@ class _NewHomeState extends State<NewHome> {
 }
 
 class PostData {
-  final int likeCount;
+  int likeCount;
   final String content;
   final List<String> images;
   final UserData user;
+  final int postId;
 
   PostData({
     required this.likeCount,
     required this.content,
     required this.images,
     required this.user,
+    required this.postId,
   });
 
   factory PostData.fromJson(Map<String, dynamic> json) {
@@ -85,31 +86,54 @@ class PostData {
         return 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com' + image['image'];
       }).toList(),
       user: UserData.fromJson(json['user']),
+      postId: json['post']['id'],
     );
   }
 }
 
 class UserData {
   final String username;
-  final String? profileImage;
+  final int? profileNumber;
 
   UserData({
     required this.username,
-    this.profileImage,
+    this.profileNumber,
   });
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
       username: json['username'],
-      profileImage: json['profile_image'],
+      profileNumber: json['profile_number'],
     );
   }
 }
 
-class HomeCard extends StatelessWidget {
+String getProfileImagePath(int profileNumber) {
+  switch (profileNumber) {
+    case 1:
+      return 'assets/images/mydog1.png';
+    case 2:
+      return 'assets/images/mydog2.png';
+    case 3:
+      return 'assets/images/mydog3.png';
+    case 4:
+      return 'assets/images/mydog4.png';
+    default:
+      return 'assets/images/mydog1.png'; // Add a default image path if needed
+  }
+}
+
+class HomeCard extends StatefulWidget {
   final PostData postData;
 
   HomeCard({required this.postData});
+
+  @override
+  _HomeCardState createState() => _HomeCardState();
+}
+
+class _HomeCardState extends State<HomeCard> {
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -121,17 +145,18 @@ class HomeCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(postData.user.profileImage ?? 'assets/images/dog3.jpg'),
+              backgroundImage:
+                  AssetImage(getProfileImagePath(widget.postData.user.profileNumber ?? 1)),
             ),
-            title: Text(postData.user.username),
+            title: Text(widget.postData.user.username),
           ),
           SizedBox(
             height: 400,
             child: PageView.builder(
-              itemCount: postData.images.length,
+              itemCount: widget.postData.images.length,
               itemBuilder: (BuildContext context, int index) {
                 return Image.network(
-                  postData.images[index],
+                  widget.postData.images[index],
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,
@@ -145,24 +170,65 @@ class HomeCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Image.asset('assets/images/liked_papaw.png', width: 50),
+                  icon: Image.asset(
+                    isLiked
+                        ? 'assets/images/liked_papaw.png'
+                        : 'assets/images/papaw.png',
+                    width: 50,
+                  ),
                   onPressed: () {
-                    // Handle like button pressed
+                    toggleLikeStatus(widget.postData.postId);
                   },
                 ),
-                Text('${postData.likeCount} 발자국'),
+                Text('${widget.postData.likeCount} 발자국'),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              postData.content,
+              widget.postData.content,
               style: TextStyle(fontSize: 16),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void toggleLikeStatus(int postId) async {
+    try {
+      final String apiUrl =
+          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/like/$postId';
+      final Dio dio7 = Dio();
+
+      Response response = await dio7.get(
+        apiUrl,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'multipart/form-data',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print("좋아요버튼갑니다");
+        setState(() {
+          isLiked = !isLiked;
+          if (isLiked) {
+            widget.postData.likeCount++;
+          } else {
+            widget.postData.likeCount--;
+          }
+        });
+      } else {
+        print('Error toggling like status: ${response.statusCode}');
+        // Handle error as needed
+      }
+    } catch (e) {
+      print('Error toggling like status: $e');
+      // Handle error as needed
+    }
   }
 }
