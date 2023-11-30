@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-
-
+import 'package:dio/dio.dart';
+import 'dart:io';
+import 'package:flutter_sns_form/src/pages/login.dart';
 
 
 class FixingMyPet extends StatelessWidget {
@@ -32,6 +32,7 @@ class FixingMyPet extends StatelessWidget {
               imageUrl: imageUrl,
               petName: petName,
               petFeatures: petCharacteristic,
+              animalId: animalId,
               // imageUrl: "https://via.placeholder.com/189x184",
               // petName: "Max",
               // petFeatures: "Friendly, Playful",
@@ -47,11 +48,12 @@ class PetDetails extends StatefulWidget {
   final String imageUrl;
   final String petName;
   final String petFeatures;
-
+  final String animalId;
   const PetDetails({
     required this.imageUrl,
     required this.petName,
     required this.petFeatures,
+    required this.animalId,
     Key? key,
   }) : super(key: key);
 
@@ -68,8 +70,48 @@ class _PetDetailsState extends State<PetDetails> {
 //이미지 등록하기 함수짜는곳
 
 
+Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
 
+    if (pickedFile != null) {
+      File imageFile = File(pickedFile.path);
+      // Call the function to upload the image
+      await _uploadImage(imageFile);
+    }
+  }
 
+  Future<void> _uploadImage(File imageFile) async {
+    try {
+      Dio dio = Dio();
+      FormData formData = FormData.fromMap({
+        'animal_id': widget.animalId,
+        'image': await MultipartFile.fromFile(imageFile.path),
+      });
+
+      Response response = await dio.post(
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/image/create',
+        data: formData,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'multipart/form-data',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        // Image uploaded successfully
+        print('Image uploaded successfully');
+        // Handle any additional logic if needed
+      } else {
+        // Handle the error
+        print('Failed to upload image. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Handle the exception
+      print('Error uploading image: $error');
+    }
+  }
 
 
 
@@ -254,18 +296,16 @@ class _PetDetailsState extends State<PetDetails> {
 //버튼을 수정하는곳..............
 
             Positioned(
-  left: 19,
-  top: 510,
-  child: ElevatedButton(
-    onPressed: () {
-      // Handle image registration logic
-    },
-    style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.green), // Change color here
-    ),
-    child: Text('이미지 등록'),
-  ),
-),
+          left: 19,
+          top: 510,
+          child: ElevatedButton(
+            onPressed: _pickImage,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.orange), // Change color here
+            ),
+            child: Text('이미지 등록하기'),
+          ),
+        ),
 
 Positioned(
   left: 150,

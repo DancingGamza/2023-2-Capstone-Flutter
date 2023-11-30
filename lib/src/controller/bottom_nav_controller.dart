@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/message_popup.dart';
+import 'package:flutter_sns_form/src/pages/new_upload.dart';
 import 'package:flutter_sns_form/src/pages/upload.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,7 @@ class BottomNavController extends GetxController{
     }
     if(value ==2){
       //upload event
-      Get.to(() =>  const Upload());
+      Get.to(() =>   UploadDB());
     }
     if(value ==3){
       //activity event
