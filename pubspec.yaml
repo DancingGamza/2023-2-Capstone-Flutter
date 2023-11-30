@@ -53,6 +53,8 @@ dependencies:
   multiple_images_picker: ^1.0.1
   flutter_masked_text2: ^0.9.1
   flutter_keyboard_visibility: ^5.4.1
+  multi_image_picker_plus: ^0.0.3
+  multi_image_picker: ^4.8.01
 dev_dependencies:
   flutter_test:
     sdk: flutter
