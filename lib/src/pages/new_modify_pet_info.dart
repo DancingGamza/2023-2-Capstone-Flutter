@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+
 
 
 
@@ -62,6 +65,17 @@ class _PetDetailsState extends State<PetDetails> {
   late String _name;
   late String _features;
 
+//이미지 등록하기 함수짜는곳
+
+
+
+
+
+
+
+
+
+//이미지등록하기 함수끝
   @override
   void initState() {
     super.initState();
@@ -83,19 +97,21 @@ class _PetDetailsState extends State<PetDetails> {
           decoration: BoxDecoration(color: Color.fromARGB(255, 111, 174, 186)),
           child: Stack(children: [
             Positioned(
-              left: 93,
-              top: 50,
-              child: Container(
-                width: 189,
-                height: 184,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(widget.imageUrl),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
+  left: 93,
+  top: 50,
+  child: Container(
+    width: 189,
+    height: 184,
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: widget.imageUrl == 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/'
+            ? AssetImage('assets/images/unknowndog.png')
+            : NetworkImage(widget.imageUrl ?? '') as ImageProvider<Object>,
+        fit: BoxFit.fill,
+      ),
+    ),
+  ),
+),
             Positioned(
               left: -1,
               top: 255,

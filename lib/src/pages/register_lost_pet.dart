@@ -120,9 +120,10 @@ class RegisteringPet extends StatelessWidget {
     height: 184,
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: NetworkImage(imageUrl),
+        image: imageUrl == 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/'
+            ? AssetImage('assets/images/unknowndog.png')
+            : NetworkImage(imageUrl ?? '') as ImageProvider<Object>,
         fit: BoxFit.fill,
-        
       ),
     ),
   ),

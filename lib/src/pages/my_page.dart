@@ -7,7 +7,8 @@ import 'package:flutter_sns_form/src/pages/fix_user_info.dart';
 String globalUser = '';
 String globalNumber = '';
 String globalNickname = '';
-
+int globalProfile=0;
+bool globalConsent=false;
 class MyPage extends StatefulWidget {
   @override
   _MyPageState createState() => _MyPageState();
@@ -22,7 +23,8 @@ class _MyPageState extends State<MyPage> {
   var nickname = '';
   var phone_number = '';
   var register_date = '';
-
+  int profile_number=1;
+  bool personal_consent=false;
   @override
   void initState() {
     super.initState();
@@ -55,6 +57,10 @@ class _MyPageState extends State<MyPage> {
         phone_number = userInfo['data']['phone_number'];
         globalNumber = phone_number;
         register_date = userInfo['data']['register_date'];
+        profile_number=userInfo['data']['profile_number'];
+        globalProfile=profile_number;
+        personal_consent=userInfo['data']['personal_consent'];
+        globalConsent=personal_consent;
         // 이후 필요한 작업을 수행하실 수 있습니다.
       } else if (response.statusCode == 401) {
         print("Authentication Error: ${response.data}");
@@ -68,10 +74,6 @@ class _MyPageState extends State<MyPage> {
   }
 
   
-
-
-
-
 
 
   @override
@@ -93,7 +95,7 @@ class _MyPageState extends State<MyPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyProfilePage(username:username,nickname:nickname,phoneNumber: phone_number,)),
+                  MaterialPageRoute(builder: (context) => MyProfilePage(nickname:nickname,phoneNumber: phone_number,profilenumber:profile_number,personalconsent:personal_consent)),
                 );
               },
               child: ProfileCard(),
@@ -185,6 +187,24 @@ class _MyPageState extends State<MyPage> {
   }
 }
 
+String getProfileImagePath(int profileNumber) {
+  switch (profileNumber) {
+    case 1:
+      return 'assets/images/mydog1.png';
+    case 2:
+      return 'assets/images/mydog2.png';
+    case 3:
+      return 'assets/images/mydog3.png';
+    case 4:
+      return 'assets/images/mydog4.png';
+    default:
+      return 'assets/images/mydog1.png'; // Add a default image path if needed
+  }
+}
+
+
+
+
 class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -198,23 +218,14 @@ class ProfileCard extends StatelessWidget {
               // 프로필 사진
               CircleAvatar(
                 radius: 30.0,
-                backgroundImage: NetworkImage(
-                    'https://i.namu.wiki/i/I8KKi13EBp0nUnliM4RrrNfp_MGruxcCsLkdHPIB2HsJRSWHGs3qyJCs4w9x98kHTuIZYqOl39RsLr_GK_iGdQ.webp'), // 프로필 사진의 URL을 넣어주세요.
+                backgroundImage: AssetImage(getProfileImagePath(globalProfile)), // 프로필 사진의 URL을 넣어주세요.
               ),
               SizedBox(width: 16.0),
               // 프로필 정보
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Text(
-                  //   '프로필 정보',
-                  //   style: TextStyle(
-                  //     fontSize: 20.0,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
-                  //SizedBox(height: 6.0),
-                  // 여기에 프로필 정보를 나타내는 위젯들을 추가하세요.
+                 
                   Row(
                     children: [
                       Text(
@@ -274,24 +285,7 @@ class ProfileCard extends StatelessWidget {
                   // 추가적인 정보를 표시할 수 있습니다.
                 ],
               ),
-              // ISSUE: 버튼을 추가하면 Incorrect use of ParentDataWidget 문제 발생...어케해결함ㅋㅋ
-              //SizedBox(width: 50.0),
-              // '>' 버튼
-              // Positioned(
-              //   top: 100.0, // 원하는 위치 조절
-              //   right: 100.0, // 원하는 위치 조절
-              //   child: GestureDetector(
-              //     onTap: () {
-              //       // '>' 버튼을 눌렀을 때 프로필 수정 페이지로 이동
-              //       // Navigator.push(
-              //       //   context,
-              //       //   MaterialPageRoute(builder: (context) => ProfileEditPage()),
-              //       // );
-              //       print(">눌림2");
-              //     },
-              //     child: Icon(Icons.arrow_forward),
-              //   ),
-              // ),
+              
             ],
           ),
         ));
@@ -417,17 +411,22 @@ class _PetCardState extends State<PetCard> {
 
 class PetAvatar extends StatelessWidget {
   final String petName;
-  final String petImage;
+  final String? petImage;
 
   PetAvatar({required this.petName, required this.petImage});
 
   @override
   Widget build(BuildContext context) {
+    bool isDefaultImage = petImage == null ||
+        petImage == 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/';
+
     return Column(
       children: [
         CircleAvatar(
           radius: 20.0,
-          backgroundImage: NetworkImage(petImage),
+          backgroundImage: isDefaultImage
+              ? Image.asset('assets/images/unknowndog.png').image
+              : Image.network(petImage!).image,
         ),
         SizedBox(height: 5.0),
         Flexible(

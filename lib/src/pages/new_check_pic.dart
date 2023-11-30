@@ -36,12 +36,12 @@ class HardList extends StatelessWidget {
     print(file.path);
     try {
       Response response = await dio.post(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/posts/missing/create/',
+        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/missing/create',
         data: formData,
       );
-
+      print("나나나나나");
       print(response);
-
+      print("리리리리리");
       if (response.statusCode == 201) {
         print("201입니다윤");
         // Uncomment the next lines if you want to navigate after a successful upload
