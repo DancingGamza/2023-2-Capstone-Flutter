@@ -81,7 +81,7 @@ Future<void> uploadImage(String filepath,BuildContext context) async {
     print(galleryPath);
     try {
       Response response = await dio.post(
-        'http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/posts/missing/create/',
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/posts/missing/create/',
         data: formData,
       );
 

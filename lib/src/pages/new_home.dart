@@ -21,7 +21,7 @@ class _NewHomeState extends State<NewHome> {
   }
 
   Future<void> fetchData() async {
-    const String apiUrl = 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/feed';
+    const String apiUrl = 'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/post/feed';
     final Dio dio = Dio();
 
     try {
@@ -83,7 +83,7 @@ class PostData {
       likeCount: json['post']['like_count'],
       content: json['post']['content'],
       images: json['images'].map<String>((image) {
-        return 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com' + image['image'];
+        return 'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com' + image['image'];
       }).toList(),
       user: UserData.fromJson(json['user']),
       postId: json['post']['id'],
@@ -199,7 +199,7 @@ class _HomeCardState extends State<HomeCard> {
   void toggleLikeStatus(int postId) async {
     try {
       final String apiUrl =
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/post/like/$postId';
+          'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/post/like/$postId';
       final Dio dio7 = Dio();
 
       Response response = await dio7.get(

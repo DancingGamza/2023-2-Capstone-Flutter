@@ -55,7 +55,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
 
     try {
       Response response = await dio.put(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/user/info',
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/user/info',
         data: formData,
       );
 

@@ -32,7 +32,7 @@ class _FixMypetListState extends State<FixMypetList> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/list');
+          'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/list');
       if (response.statusCode == 200) {
         print("Success: ${response.data}");
         var animalInfo = response.data;
@@ -216,7 +216,7 @@ class _FixMypetListState extends State<FixMypetList> {
     });
 
     Response response = await dio4.post(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/create',
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/create',
         data: formData,
       );
 
@@ -273,7 +273,7 @@ void _showCompletionDialog() {
     builder: (context) => FixingMyPet(
       petName: nicknamePet,
       petCharacteristic: petchracteristic,
-      imageUrl: "http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" + imageUrl,
+      imageUrl: "http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/" + imageUrl,
       animalId: animalid,
     ),
   ),
