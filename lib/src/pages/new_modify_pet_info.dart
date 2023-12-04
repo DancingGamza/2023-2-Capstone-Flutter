@@ -89,7 +89,7 @@ Future<void> _pickImage() async {
       });
 
       Response response = await dio.post(
-        'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/image/create',
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/image/create',
         data: formData,
         options: Options(
           headers: {
@@ -146,7 +146,7 @@ Future<void> _pickImage() async {
     height: 184,
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: widget.imageUrl == 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/'
+        image: widget.imageUrl == 'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/'
             ? AssetImage('assets/images/unknowndog.png')
             : NetworkImage(widget.imageUrl ?? '') as ImageProvider<Object>,
         fit: BoxFit.fill,
@@ -177,7 +177,7 @@ Future<void> _pickImage() async {
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  //SizedBox(height: 8),
                   Container(
                     width: 336,
                     height: 71,
@@ -241,7 +241,7 @@ Future<void> _pickImage() async {
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  //SizedBox(height: 8),
                   Container(
                     width: 336,
                     height: 71,
@@ -296,34 +296,34 @@ Future<void> _pickImage() async {
 //버튼을 수정하는곳..............
 
             Positioned(
-          left: 19,
+          left: 120,
           top: 510,
           child: ElevatedButton(
             onPressed: _pickImage,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.orange), // Change color here
+              backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(138, 15, 179, 133)), // Change color here
             ),
-            child: Text('이미지 등록하기'),
+            child: Text('새 이미지 등록하기'),
           ),
         ),
 
 Positioned(
-  left: 150,
-  top: 510,
+  left: 130,
+  top: 560,
   child: ElevatedButton(
     onPressed: () {
       // Handle setting the image as the representative image logic
     },
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue), // Change color here
+      backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(138, 15, 179, 133)), // Change color here
     ),
-    child: Text('대표이미지 설정'),
+    child: Text('대표이미지 등록'),
   ),
 ),
 
 Positioned(
-  left: 280,
-  top: 510,
+  left: 293,
+  top: 640,
   child: ElevatedButton(
     onPressed: () {
       // Handle update logic
@@ -332,9 +332,22 @@ Positioned(
       // Update the pet details as needed
     },
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.red), // Change color here
+      backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 111, 174, 186)), // Change color here
     ),
     child: Text('수정'),
+  ),
+),
+Positioned(
+  left: 20,
+  top: 640,
+  child: ElevatedButton(
+    onPressed: () {
+      // Handle setting the image as the representative image logic
+    },
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 153, 153, 153)), // Change color here
+    ),
+    child: Text('삭제'),
   ),
 ),
 
@@ -343,4 +356,5 @@ Positioned(
       ],
     );
   }
+
 }

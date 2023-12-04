@@ -42,7 +42,7 @@ class _MyPageState extends State<MyPage> {
 
     try {
       Response response = await dio.get(
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/user/info');
+          'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/user/info');
       if (response.statusCode == 200) {
         print("$response");
         print("이건 성공");
@@ -318,7 +318,7 @@ class _PetCardState extends State<PetCard> {
     try {
       print("try해봄");
       Response response2 = await dio2.get(
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/list');
+          'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/list');
       if (response2.statusCode == 200) {
         print("일단 200은 옴");
         print("Success: ${response2.data}");
@@ -382,7 +382,7 @@ class _PetCardState extends State<PetCard> {
                     itemBuilder: (context, index) {
                       return PetAvatar(
                         petName: nicknamePets[index],
-                        petImage: 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/'+mainimageUrls[index],
+                        petImage: 'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/'+mainimageUrls[index],
                       );
                     },
                   ),
@@ -418,7 +418,7 @@ class PetAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDefaultImage = petImage == null ||
-        petImage == 'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/';
+        petImage == 'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/';
 
     return Column(
       children: [

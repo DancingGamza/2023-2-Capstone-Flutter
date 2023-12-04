@@ -98,7 +98,7 @@ class _AIResultState extends State<AIResult> {
           petName: nicknamePet,
           petchracteristic: petchracteristic,
           imageUrl:
-              "http://ec2-13-209-75-120.ap-northeast-2.compute.amazonaws.com/media/" +
+              "http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/" +
                   imageUrl,
           animalid: animalid,
         ),

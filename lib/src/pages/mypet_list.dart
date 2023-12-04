@@ -31,7 +31,7 @@ class _MypetListState extends State<MypetList> {
     try {
       print("try해봄");
       Response response = await dio.get(
-          'http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/animal/list');
+          'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/list');
       if (response.statusCode == 200) {
         print("일단 200은 옴");
         print("Success: ${response.data}");
@@ -130,7 +130,7 @@ Widget build(BuildContext context) {
           petName: nicknamePet,
           petchracteristic: petchracteristic,
           imageUrl:
-              "http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/" +
+              "http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/" +
                   imageUrl,
           animalid: animalid,
         ),
