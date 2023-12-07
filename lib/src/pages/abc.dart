@@ -25,17 +25,19 @@ import 'package:flutter_sns_form/src/pages/login.dart';
 // }
 
 class Jebo extends StatefulWidget {
-  final int animalId;
+  final String animalId;
   final String animalNickname;
   final String? animalFeatures;
   final String animalImageUrl;
+  final String animalPicId;
+  //final int animalImageId;
 
   Jebo({
     required this.animalId,
     required this.animalNickname,
     required this.animalFeatures,
     required this.animalImageUrl,
-    
+    required this.animalPicId,
   });
 
   @override
@@ -59,15 +61,16 @@ class _JeboState extends State<Jebo> {
     dio.options.contentType = 'multipart/form-data';
 
     var formData = FormData.fromMap({
-      'animal_id':widget.animalId.toString(),
+      'animal_id':widget.animalId,
       'find_location':discoveryLocationController.text,
       'find_phone_number':phoneNumberController.text,
+      'missing_id':widget.animalPicId,
     });
 
     try {
       print("try들어옴요");
       Response response = await dio.post(
-        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/find',
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/post/missing/find',
         data: formData,
       );
 
@@ -85,7 +88,12 @@ class _JeboState extends State<Jebo> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const App(),
+          ),
+        );
+                  //Navigator.of(context).pop();
                 },
                 child: Text('확인'),
               ),
@@ -93,11 +101,7 @@ class _JeboState extends State<Jebo> {
           );
         },
       );
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const App(),
-          ),
-        );
+        
         // Display a success message
         // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         //   content: Text('Pet details updated successfully!'),
@@ -159,7 +163,7 @@ class _JeboState extends State<Jebo> {
     height: 184,
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: NetworkImage('http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/${widget.animalImageUrl}'),
+        image: NetworkImage('http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/${widget.animalImageUrl}'),
         fit: BoxFit.fill,
       ),
     ),
@@ -254,76 +258,81 @@ class _JeboState extends State<Jebo> {
              Positioned(
   left: 20,
   top: 350,
-  child: Container(
-    width: 335,
-    height: 71,
-    child: Stack(
-      children: [
-        Positioned(
-          left: 0,
-          top: 0,
-          child: Container(
-            width: 335,
-            padding: const EdgeInsets.only(top: 22),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
-                        borderRadius: BorderRadius.circular(6),
+  child: Center(
+    child: Container(
+      width: 335,
+      height: 71,
+      child: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            top: 0,
+            child: Container(
+              width: 335,
+              padding: const EdgeInsets.only(top: 22),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 1, color: Color(0xFFC8D1E1)),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(width: 24, height: 24),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            widget.animalFeatures ?? '', // Display characteristics
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(width: 24, height: 24),
+                          SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              widget.animalFeatures ?? '', // Display characteristics
+                              textAlign: TextAlign.center, // Center-align the text
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                height: 0,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        Positioned(
-          left: 126,
-          top: 5,
-          child: Text(
-            '반려동물 특징',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w400,
-              height: 0,
+          Positioned(
+            left: 126,
+            top: 5,
+            child: Text(
+              '반려동물 특징',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
+                height: 0,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   ),
 ),
+
+
               Positioned.fill(
   top: 66, // Adjust the top value as needed
   child: Container(
@@ -436,10 +445,11 @@ class _JeboState extends State<Jebo> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(width: 24, height: 24),
-                        SizedBox(width: 8),  // Add this line to add spacing
+                        SizedBox(width: 3),  // Add this line to add spacing
                         Expanded(
                           child: Text(
                             widget.animalNickname,
+                            textAlign: TextAlign.center, // Center-align the text
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -475,6 +485,7 @@ class _JeboState extends State<Jebo> {
     ),
   ),
 ),
+
               Positioned(
   left: 20,
   top: 620, // Adjust the top value as needed

@@ -220,18 +220,28 @@ Future<void> _updatePetDetails() async {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// //실종신고 해제하는 함수 짜는곳
+// Future<void> _unregister() async{
+//   try {
+//     Dio dio =Dio();
+//     Response response = await dio.put('http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/',options:Options(headers:{
+//       'Authorization':'Bearer $token',
+//       'Content-Type': 'multipart/form-data',
+//     },),);
+//     if (response.statusCode == 200) {
+//         // Extract and return the list of images from the response data
+//         print('신고해지완료');
+//       } else {
+//         // Handle the error
+//         print('failing unregister');
+//       }
+//     } catch (error) {
+//       // Handle the exception
+//       print('Error unregister: $error');
+     
+//     }
+//   }
+// }
 
 
 //대표이미지 등록하기 함수 짜는곳
@@ -585,35 +595,34 @@ Future<void> _navigateToImageAlbum() async {
           ),
         ),
 
+        //     Positioned(
+        //   left: 155,
+        //   top: 640,
+        //   child: ElevatedButton(
+        //     onPressed:
+        //     style: ButtonStyle(
+        //       backgroundColor: MaterialStateProperty.all<Color>(
+        //           Color.fromARGB(255, 174, 91, 161)), // Change color here
+        //     ),
+        //     child: Text('실종해제'),
+        //   ),
+        // ),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            Positioned(
-          left: 20,
-          top: 640,
-          child: ElevatedButton(
-            onPressed: _deletePet,
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 153, 153, 153)), // Change color here
-            ),
-            child: Text('삭제'),
-          ),
-        ),
-          ]),
+//             Positioned(
+//           left: 20,
+//           top: 640,
+//           child: ElevatedButton(
+//             onPressed: _deletePet,
+//             style: ButtonStyle(
+//               backgroundColor: MaterialStateProperty.all<Color>(
+//                   const Color.fromARGB(255, 153, 153, 153)), // Change color here
+//             ),
+//             child: Text('삭제'),
+//           ),
+//         ),
+           ]),
         )
-      ],
+       ],
     );
-  }
+ }
 }
