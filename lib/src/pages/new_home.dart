@@ -148,7 +148,7 @@ class _HomeCardState extends State<HomeCard> {
               backgroundImage:
                   AssetImage(getProfileImagePath(widget.postData.user.profileNumber ?? 1)),
             ),
-            title: Text(widget.postData.user.username),
+            title: Text(widget.postData.user.username,style:TextStyle(fontFamily: 'DungGeunMo')),
           ),
           SizedBox(
             height: 400,
@@ -180,7 +180,7 @@ class _HomeCardState extends State<HomeCard> {
                     toggleLikeStatus(widget.postData.postId);
                   },
                 ),
-                Text('${widget.postData.likeCount} 발자국'),
+                Text('${widget.postData.likeCount} 발자국',style: TextStyle(fontFamily:'DungGeunMo' ),),
               ],
             ),
           ),
@@ -188,7 +188,7 @@ class _HomeCardState extends State<HomeCard> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               widget.postData.content,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16,fontFamily: 'DungGeunMo'),
             ),
           ),
         ],

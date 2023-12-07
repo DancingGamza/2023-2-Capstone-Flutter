@@ -176,7 +176,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     });
                   },
                 ),
-                Text('반려동물 실종신고시 전화번호 공개에 동의합니다.'),
+                Text('전화번호 공개 동의'),
               ],
             ),
             Center(
