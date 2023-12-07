@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-
+import 'package:flutter_sns_form/src/pages/login.dart';
+import 'package:flutter_sns_form/src/pages/abc.dart';
 
 
 class AIList extends StatelessWidget {
@@ -24,15 +25,37 @@ class AIList extends StatelessWidget {
         itemBuilder: (context, index) {
           final animal = animalData[index];
           return Card(
-            child: ListTile(
-              title: Text(animal['nickname']),
-              subtitle: Text('ID: ${animal['id']}'),
-              // Customize the ListTile based on your requirements
-              leading: mainImage != null
-                  ? Image.network(mainImage!['url']) // Adjust based on your response structure
-                  : null,
-            ),
-          );
+  child: GestureDetector(
+    onTap: () {
+      print("9999999");
+      print(animal['id']);
+      print(animal['nickname']);
+      print(animal['characteristic']);
+      print(animal['main_img']);
+      print("9999999");
+      Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => Material(
+      child: Jebo(
+        animalId: animal['id'],
+        animalNickname: animal['nickname'].toString(),
+        animalFeatures: animal['characteristic'].toString(),
+        animalImageUrl: animal['main_img'].toString(),
+      ),
+    ),
+  ),
+);
+    },
+    child: ListTile(
+      title: Text(animal['nickname']),
+      subtitle: Text('ID: ${animal['id']}'),
+      leading: mainImage != null
+          ? Image.network(mainImage!['url'])
+          : null,
+    ),
+  ),
+);
         },
       ),
     );

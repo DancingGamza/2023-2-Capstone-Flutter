@@ -402,6 +402,7 @@ Future<void> _navigateToImageAlbum() async {
                     '반려동물 이름',
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontFamily: 'DungGeunMo',
                       color: Colors.black,
                       fontSize: 14,
                     ),
@@ -466,6 +467,7 @@ Future<void> _navigateToImageAlbum() async {
                     '반려동물 특징',
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontFamily: 'DungGeunMo',
                       color: Colors.black,
                       fontSize: 14,
                     ),
@@ -532,7 +534,7 @@ Future<void> _navigateToImageAlbum() async {
                   backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(138, 15, 179, 133)), // Change color here
                 ),
-                child: Text('새 이미지 등록하기'),
+                child: Text('새 이미지 등록하기',style:TextStyle(fontFamily: 'DungGeunMo')),
               ),
             ),
 
@@ -564,7 +566,7 @@ Future<void> _navigateToImageAlbum() async {
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(138, 15, 179, 133)),
     ),
-    child: Text('대표이미지 등록'),
+    child: Text('대표이미지 등록',style:TextStyle(fontFamily: 'DungGeunMo')),
   ),
 ),
 
@@ -579,7 +581,7 @@ Future<void> _navigateToImageAlbum() async {
               backgroundColor: MaterialStateProperty.all<Color>(
                   Color.fromARGB(255, 111, 174, 186)), // Change color here
             ),
-            child: Text('수정'),
+            child: Text('수정',style:TextStyle(fontFamily: 'DungGeunMo')),
           ),
         ),
 

@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter_sns_form/src/pages/new_check_pic.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_sns_form/src/pages/check_pic.dart';
+
 
 
 class HardPet extends StatelessWidget {

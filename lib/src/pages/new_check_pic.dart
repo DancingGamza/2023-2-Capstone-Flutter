@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_sns_form/src/pages/hard_ailist.dart';
+
 import 'package:flutter_sns_form/src/pages/new_ai_list.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_sns_form/src/app.dart';
+
 import 'package:flutter_sns_form/src/pages/login.dart';
 class HardList extends StatelessWidget {
   final String imagePath;

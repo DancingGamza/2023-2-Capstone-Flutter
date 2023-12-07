@@ -24,7 +24,36 @@ class RegisterPet extends StatefulWidget {
   _RegisterPetState createState() => _RegisterPetState();
 }
 
+
 class _RegisterPetState extends State<RegisterPet> {
+void _showReportCompleteDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('신고 완료'),
+        content: Text('신고가 성공적으로 완료되었습니다.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+
+            builder: (context) => const App(),
+          ),
+        );
+            },
+            child: Text('확인'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+
+
   final TextEditingController location_Controller = TextEditingController();
   final String token=globalToken;
   Future<void> reporting(animalid, location) async {
@@ -47,12 +76,14 @@ class _RegisterPetState extends State<RegisterPet> {
 
       print(response);
 
-      if (response.statusCode == 200) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const App(),
-          ),
-        );
+      if (response.statusCode == 201||response.statusCode==200) {
+        _showReportCompleteDialog(context);
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(
+
+        //     builder: (context) => const App(),
+        //   ),
+        // );
       }
     } catch (error) {
       print("신고실패");
@@ -195,10 +226,11 @@ class RegisteringPet extends StatelessWidget {
                   Text(
                     '주인 전화번호',
                     style: TextStyle(
+                      
                       color: Color.fromARGB(138, 15, 179, 133),
             fontSize: 18,
             fontWeight: FontWeight.bold,
-                      fontFamily: 'Inter',
+                      fontFamily: 'DungGeunMo',
                       //fontWeight: FontWeight.w400,
                       height: 0,
                     ),
@@ -278,7 +310,7 @@ class RegisteringPet extends StatelessWidget {
                   color: Color.fromARGB(138, 15, 179, 133),
             fontSize: 18,
             fontWeight: FontWeight.bold,
-                  fontFamily: 'Inter',
+                  fontFamily: 'DungGeunMo',
                   //fontWeight: FontWeight.w400,
                   height: 0,
                 ),
@@ -328,7 +360,7 @@ class RegisteringPet extends StatelessWidget {
             color: Color.fromARGB(138, 15, 179, 133),
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Inter',
+            fontFamily: 'DungGeunMo',
             //fontWeight: FontWeight.w400,
             height: 0,
           ),
@@ -471,7 +503,7 @@ class RegisteringPet extends StatelessWidget {
                   color: Color.fromARGB(138, 15, 179, 133),
             fontSize: 18,
             fontWeight: FontWeight.bold,
-                  fontFamily: 'Inter',
+                  fontFamily: 'DungGeunMo',
                   //fontWeight: FontWeight.w400,
                   height: 0,
                 ),
@@ -507,7 +539,7 @@ class RegisteringPet extends StatelessWidget {
       // For now, I'm just printing a message
       print('신고 button clicked');
     },
-    child: Text('신고', style: TextStyle(fontSize: 16)),
+    child: Text('신고', style: TextStyle(fontSize: 16,fontFamily: 'DungGeunMo')),
     style: ElevatedButton.styleFrom(
       backgroundColor: Color.fromARGB(255, 111, 174, 186), // Set button background color
       foregroundColor: Colors.white, // Set text color
