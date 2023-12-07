@@ -10,11 +10,11 @@ class AIList extends StatelessWidget {
   final Map<String, dynamic>? mainImage;
 
   AIList({required this.response, this.mainImage});
-
+  
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> animalData = List<Map<String, dynamic>>.from(response.data['data']);
-
+     int animalPicId = response.data['message'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Animal List'),
@@ -38,10 +38,11 @@ class AIList extends StatelessWidget {
   MaterialPageRoute(
     builder: (context) => Material(
       child: Jebo(
-        animalId: animal['id'],
+        animalId: animal['id'].toString(),
         animalNickname: animal['nickname'].toString(),
         animalFeatures: animal['characteristic'].toString(),
         animalImageUrl: animal['main_img'].toString(),
+        animalPicId: animalPicId.toString(),
       ),
     ),
   ),
@@ -49,7 +50,7 @@ class AIList extends StatelessWidget {
     },
     child: ListTile(
       title: Text(animal['nickname']),
-      subtitle: Text('ID: ${animal['id']}'),
+      //subtitle: Text('ID: ${animal['id']}'),
       leading: mainImage != null
           ? Image.network(mainImage!['url'])
           : null,

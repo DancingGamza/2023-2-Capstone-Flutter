@@ -608,21 +608,21 @@ Future<void> _navigateToImageAlbum() async {
         //   ),
         // ),
 
-            Positioned(
-          left: 20,
-          top: 640,
-          child: ElevatedButton(
-            onPressed: _deletePet,
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 153, 153, 153)), // Change color here
-            ),
-            child: Text('삭제'),
-          ),
-        ),
-          ]),
+//             Positioned(
+//           left: 20,
+//           top: 640,
+//           child: ElevatedButton(
+//             onPressed: _deletePet,
+//             style: ButtonStyle(
+//               backgroundColor: MaterialStateProperty.all<Color>(
+//                   const Color.fromARGB(255, 153, 153, 153)), // Change color here
+//             ),
+//             child: Text('삭제'),
+//           ),
+//         ),
+           ]),
         )
-      ],
+       ],
     );
-  }
+ }
 }

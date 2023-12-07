@@ -29,7 +29,7 @@ Widget _buildCard(String imagePath, String title, VoidCallback onTap) {
           borderRadius: BorderRadius.circular(20),
           
         ),
-        elevation: 4.0,
+        elevation: 0.0,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,7 +62,7 @@ Widget _buildCard(String imagePath, String title, VoidCallback onTap) {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 4,
+        elevation: 0,
         centerTitle:true,
         title:ImageData(IconsPath.upsearch,width:270),
         /*

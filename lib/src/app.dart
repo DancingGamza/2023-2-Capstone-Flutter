@@ -19,15 +19,17 @@ class App extends GetView<BottomNavController> {
     return WillPopScope(
       child: Obx(
         () => Scaffold(
+          
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           body: IndexedStack(
+            
             index: controller.pageIndex.value,
             children: [
               NewHome(),
               const Search(),
               UploadDB(),
               //Container(),
-              const ActiveHistory(),
+              ActiveHistory1(),
               MyPage(),
               //Container(child: Center(child: Text('MYPAGE'))),
             ],

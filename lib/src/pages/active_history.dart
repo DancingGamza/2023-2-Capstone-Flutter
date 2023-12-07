@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_form/src/components/avatar_widget.dart';
 import 'package:flutter_sns_form/src/components/image_data.dart';
+
+
+class ActiveHistory1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ActiveHistory(context:context),
+    );
+  }
+}
+
+
+
 class ActiveHistory extends StatelessWidget{
-  const ActiveHistory({Key?key}):super(key:key);
+  final BuildContext context;
+
+  const ActiveHistory({Key? key, required this.context}) : super(key: key);
+  //const ActiveHistory({Key?key}):super(key:key);
 /*
   Widget _activeitemOne(){
     return Padding(padding:const EdgeInsets.symmetric(vertical:10),
@@ -41,13 +57,28 @@ class ActiveHistory extends StatelessWidget{
     ),);
   }
 */
-Widget _activeitemOne() {
+
+
+
+
+
+Widget _activeitemOne(BuildContext context) {
   return Card(
-    elevation: 2, // Adjust the elevation as needed
+    elevation: 2,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    child: Container(
+    child: InkWell(
+      onTap: () {
+        _showMessageBox(
+          context,
+          '시험용',
+          '이것은 추가적인 내용입니다.\n더 많은 내용을 여기에 추가할 수 있습니다.',
+          'assets/images/dog1.jpg',
+        );
+      },
+      child: Container(
+   
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
@@ -104,7 +135,7 @@ Widget _activeitemOne() {
         ),
       ),
     ),
-  );
+  ));
 }
 Widget _activeitemTwo() {
   return Card(
@@ -433,11 +464,40 @@ Widget _activeitemSix() {
         ),
       ),
     ),
+    
   );
+  
 }
 
-
-
+void _showMessageBox(BuildContext context, String title, String contentText, String imagePath) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        contentPadding: EdgeInsets.all(20.0), // 여기서 여백을 조절
+        content: Column(
+          children: [
+            Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 10),
+            Text(contentText),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('확인'),
+          ),
+        ],
+      );
+    },
+  );
+}
   Widget _newRecentlyActiveView(){
     return Padding( 
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -452,7 +512,7 @@ Widget _activeitemSix() {
           ),
           ),
           const SizedBox(height:15),
-          _activeitemOne(),
+          _activeitemOne(context),
           _activeitemTwo(),
           _activeitemThree(),
           //_activeitemOne(),
@@ -477,7 +537,7 @@ Widget _activeitemSix() {
           ),
           const SizedBox(height:15),
           _activeitemSix(),
-          _activeitemOne(),
+          _activeitemOne(context),
           //_activeitemOne(),
           //_activeitemOne(),
           //_activeitemOne(),

@@ -28,8 +28,9 @@ class HardList extends StatelessWidget {
   String fileName = file.path.split('/').last;
   dio.options.headers = {
     'Authorization': 'Bearer $token',
+    'Content-Type': 'multipart/form-data',
   };
-  dio.options.contentType = 'multipart/form-data';
+  // dio.options.contentType = 'multipart/form-data';
   FormData formData = FormData.fromMap({
     "image": await MultipartFile.fromFile(file.path, filename: fileName),
   });
@@ -39,6 +40,9 @@ class HardList extends StatelessWidget {
 
   print("ㅇㅇㅇ");
   print(file.path);
+  print(fileName);
+  print((MultipartFile.fromFile(file.path, filename: fileName)).toString());
+  print("Ddd");
   try {
     Response response = await dio.post(
       'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/post/missing/create',
@@ -61,7 +65,7 @@ class HardList extends StatelessWidget {
       print("400이에요");
     }
   } catch (e) {
-    print("응 아예 서버로부터 값도 못받아옴 ㅅㄱ");
+    print("응 아예 서버로부터 값도 못받아옴");
     print('Error: $e');
     print(imagePath);
   }
