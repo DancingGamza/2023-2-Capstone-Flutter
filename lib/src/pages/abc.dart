@@ -159,7 +159,7 @@ class _JeboState extends State<Jebo> {
     height: 184,
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: NetworkImage('http://ec2-3-39-24-207.ap-northeast-2.compute.amazonaws.com/media/${widget.animalImageUrl}'),
+        image: NetworkImage('http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/media/${widget.animalImageUrl}'),
         fit: BoxFit.fill,
       ),
     ),

@@ -46,29 +46,120 @@ class App extends GetView<BottomNavController> {
               onTap: controller.changeBottomNav,
               items: [
                 BottomNavigationBarItem(
-                  icon: ImageData(IconsPath.homeOff),
-                  activeIcon: ImageData(IconsPath.homeOn),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: ImageData(IconsPath.searchOff),
-                  activeIcon: ImageData(IconsPath.searchOn),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: ImageData(IconsPath.uploadIcon),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: ImageData(IconsPath.activeOff),
-                  activeIcon: ImageData(IconsPath.activeOn),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                   icon: ImageData(IconsPath.personOff),
-                  activeIcon: ImageData(IconsPath.personOn),
-                  label: 'home',
-                ),
+  icon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/newhome.jpg'),
+        fit: BoxFit.contain, // 이미지를 컨테이너에 맞게 조절합니다.
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  activeIcon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/newhome_s.jpg'),
+        fit: BoxFit.contain,
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  label: 'home',
+),
+                 BottomNavigationBarItem(
+  icon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/magnifying.jpg'),
+        fit: BoxFit.contain, // 이미지를 컨테이너에 맞게 조절합니다.
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  activeIcon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/magnifying_s.jpg'),
+        fit: BoxFit.contain,
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  label: 'home',
+),
+                 BottomNavigationBarItem(
+  icon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/uping.jpg'),
+        fit: BoxFit.contain, // 이미지를 컨테이너에 맞게 조절합니다.
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  // activeIcon: Container(
+  //   decoration: BoxDecoration(
+  //     image: DecorationImage(
+  //       image: AssetImage('assets/images/newhome_s.jpg'),
+  //       fit: BoxFit.contain,
+  //     ),
+  //   ),
+  //   width: 30.0, // 조절하고자 하는 크기로 설정
+  //   height: 30.0, // 조절하고자 하는 크기로 설정
+  // ),
+  label: 'home',
+),
+                 BottomNavigationBarItem(
+  icon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/paw.jpg'),
+        fit: BoxFit.contain, // 이미지를 컨테이너에 맞게 조절합니다.
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  activeIcon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/paw_s.jpg'),
+        fit: BoxFit.contain,
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  label: 'home',
+),
+                 BottomNavigationBarItem(
+  icon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/mine.jpg'),
+        fit: BoxFit.contain, // 이미지를 컨테이너에 맞게 조절합니다.
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  activeIcon: Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage('assets/images/mine_s.jpg'),
+        fit: BoxFit.contain,
+      ),
+    ),
+    width: 30.0, // 조절하고자 하는 크기로 설정
+    height: 30.0, // 조절하고자 하는 크기로 설정
+  ),
+  label: 'home',
+),
               ],
             ),
           ),

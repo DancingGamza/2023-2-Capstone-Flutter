@@ -80,6 +80,7 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -208,8 +209,10 @@ String getProfileImagePath(int profileNumber) {
 class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return Card(
-        elevation: 4.0,
+      
+        elevation: 7.0,
         color: Color.fromARGB(255, 111, 174, 186),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
