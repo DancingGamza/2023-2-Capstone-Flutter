@@ -83,8 +83,8 @@ class _JeboState extends State<Jebo> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('제보 완료'),
-            content: Text('제보가 완료되었습니다.'),
+            title: Text('제보 완료',style: TextStyle(fontFamily: 'DungGeunMo',),),
+            content: Text('제보가 완료되었습니다.',style: TextStyle(fontFamily: 'DungGeunMo',),),
             actions: [
               TextButton(
                 onPressed: () {
@@ -95,7 +95,7 @@ class _JeboState extends State<Jebo> {
         );
                   //Navigator.of(context).pop();
                 },
-                child: Text('확인'),
+                child: Text('확인',style: TextStyle(fontFamily: 'DungGeunMo',),),
               ),
             ],
           );
@@ -189,7 +189,7 @@ class _JeboState extends State<Jebo> {
         style: TextStyle(
           color: Colors.black,
           fontSize: 14,
-          fontFamily: 'Inter',
+          fontFamily: 'DungGeunMo',
           fontWeight: FontWeight.w400,
           height: 0,
         ),
@@ -227,7 +227,7 @@ class _JeboState extends State<Jebo> {
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
                                   hintText: '전화번호를 입력하세요(선택)',
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: Colors.grey,fontFamily: 'DungGeunMo',),
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.zero,
                                 ),
@@ -298,7 +298,7 @@ class _JeboState extends State<Jebo> {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
-                                fontFamily: 'Inter',
+                                fontFamily: 'DungGeunMo',
                                 fontWeight: FontWeight.w400,
                                 height: 0,
                               ),
@@ -320,7 +320,7 @@ class _JeboState extends State<Jebo> {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,
-                fontFamily: 'Inter',
+                fontFamily: 'DungGeunMo',
                 fontWeight: FontWeight.w400,
                 height: 0,
               ),
@@ -344,7 +344,7 @@ class _JeboState extends State<Jebo> {
         style: TextStyle(
           color: Colors.black,
           fontSize: 14,
-          fontFamily: 'Inter',
+          fontFamily: 'DungGeunMo',
           fontWeight: FontWeight.w400,
           height: 0,
         ),
@@ -386,7 +386,7 @@ class _JeboState extends State<Jebo> {
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.zero,
                                 ),
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.black,fontFamily: 'DungGeunMo',),
                               ),
                             ),
                           ],
@@ -453,7 +453,7 @@ class _JeboState extends State<Jebo> {
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
-                              fontFamily: 'Inter',
+                              fontFamily: 'DungGeunMo',
                               fontWeight: FontWeight.w400,
                               height: 0,
                             ),
@@ -475,7 +475,7 @@ class _JeboState extends State<Jebo> {
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,
-              fontFamily: 'Inter',
+              fontFamily: 'DungGeunMo',
               fontWeight: FontWeight.w400,
               height: 0,
             ),
@@ -495,7 +495,7 @@ class _JeboState extends State<Jebo> {
         onPressed: () {Navigator.pop(context);
           // Add your logic for canceling the report here
         },
-        child: Text('취소'),
+        child: Text('취소',style:TextStyle(fontFamily: 'DungGeunMo',)),
       ),
       SizedBox(width: 200), // Add some spacing between buttons
       ElevatedButton(
@@ -516,14 +516,14 @@ class _JeboState extends State<Jebo> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('알림'),
-            content: Text('발견 위치를 입력해주세요!'),
+            title: Text('알림',style: TextStyle(fontFamily: 'DungGeunMo',),),
+            content: Text('발견 위치를 입력해주세요!',style: TextStyle(fontFamily: 'DungGeunMo',),),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('확인'),
+                child: Text('확인',style: TextStyle(fontFamily: 'DungGeunMo',),),
               ),
             ],
           );
@@ -533,7 +533,7 @@ class _JeboState extends State<Jebo> {
       
           // Add your logic for submitting the report here
         },
-        child: Text('제보'),
+        child: Text('제보',style: TextStyle(fontFamily: 'DungGeunMo',),),
       ),
     ],
   ),
