@@ -56,11 +56,14 @@ class _LogingInState extends State<LogingIn> {
           );
         },
       );
-    } else {
-      setState(() {
-        loginMessage = "로그인 실패";
-      });
-    }
+    } 
+     else {
+  setState(() {
+    loginMessage = "로그인 실패";
+  });
+
+  
+}
   }
 
   @override

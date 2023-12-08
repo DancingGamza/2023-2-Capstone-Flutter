@@ -91,4 +91,5 @@ class IconsPath {
   static String get dog1=>'assets/images/dog1.jpg';
   static String get dog2=>'assets/images/dog2.jpg';
   static String get paw=>'assets/images/papaw.jpg';
+  static String get robot=>'assets/images/robot.png';
 }

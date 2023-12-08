@@ -138,7 +138,7 @@ class _HomeCardState extends State<HomeCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
+      elevation: 6,
       color: Colors.white,
       clipBehavior: Clip.antiAlias,
       child: Column(

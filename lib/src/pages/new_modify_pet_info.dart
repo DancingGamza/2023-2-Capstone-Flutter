@@ -74,6 +74,84 @@ class _PetDetailsState extends State<PetDetails> {
 late String representImageId;
 
 
+//동물정보 삭제하기 함수짜는곳
+ Future<void> _unreport() async {
+    try {
+      Dio dio = Dio();
+      Response response = await dio.get(
+        'http://ec2-13-209-17-240.ap-northeast-2.compute.amazonaws.com/animal/found/${widget.animalId}',
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+             'Content-Type': 'multipart/form-data',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('실종해제 완료'),
+            content: Text('실종해제가 완료되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('확인'),
+              ),
+            ],
+          );
+        },
+      );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const App(),
+          ),
+        );
+        // // Display a success message
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //   content: Text('Pet deleted successfully!'),
+        // ));
+
+        // // Navigate to the App() page
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(
+        //     builder: (context) => const App(),
+        //   ),
+        // );
+      } else {
+        // Handle the error
+       showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('잘못누르셨군요?'),
+            content: Text('실종신고가 된 적 없는 강아지입니다만?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('확인'),
+              ),
+            ],
+          );
+        },
+      );
+      }
+    } catch (error) {
+      // Handle the exception
+      print('Error deleting pet: $error');
+    }
+  }
+
+
+
+
+
+
 
 
 //동물정보 삭제하기 함수짜는곳
@@ -595,18 +673,18 @@ Future<void> _navigateToImageAlbum() async {
           ),
         ),
 
-        //     Positioned(
-        //   left: 155,
-        //   top: 640,
-        //   child: ElevatedButton(
-        //     onPressed:
-        //     style: ButtonStyle(
-        //       backgroundColor: MaterialStateProperty.all<Color>(
-        //           Color.fromARGB(255, 174, 91, 161)), // Change color here
-        //     ),
-        //     child: Text('실종해제'),
-        //   ),
-        // ),
+            Positioned(
+          left: 155,
+          top: 640,
+          child: ElevatedButton(
+            onPressed:_unreport,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                 Color.fromARGB(138, 15, 179, 133)), // Change color here
+            ),
+            child: Text('실종해제'),
+          ),
+        ),
 
 //             Positioned(
 //           left: 20,
@@ -615,7 +693,7 @@ Future<void> _navigateToImageAlbum() async {
 //             onPressed: _deletePet,
 //             style: ButtonStyle(
 //               backgroundColor: MaterialStateProperty.all<Color>(
-//                   const Color.fromARGB(255, 153, 153, 153)), // Change color here
+//                   Color.fromARGB(138, 15, 179, 133)), // Change color here
 //             ),
 //             child: Text('삭제'),
 //           ),
