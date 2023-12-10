@@ -1,16 +1,12 @@
-# flutter_sns_form
+# 2023-2-Capstone-Flutter
+Chung-ang Univ Capstone Design(1)
+중앙대학교 캡스톤디자인(1)
 
-A new Flutter project.
+This is the FrontEnd's github(Author: realyuna)
+And https://github.com/Choi-JY1107/2023-2-Capstone-Server <- This is BackEnd's github(Author: cjy)
 
-## Getting Started
+You can clone my project and set environment by following pubspec file.
+And if you want, there is apk file that is v.1.0.
+I made it by my window laptop, this app only support android, not ios.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
