@@ -2,7 +2,7 @@
 
 ![Catch Pet](image/catch_pet_logo.png)
 
-- [백엔드 링크]([https://github.com/realyuna/2023-2-Capstone-Flutter](https://github.com/Choi-JY1107/2023-2-Capstone-Server))
+- [백엔드 링크](https://github.com/Choi-JY1107/2023-2-Capstone-Server)
 - [AI 학습 코드 링크](https://github.com/Choi-JY1107/2023-2-Capstone-ML)
 - [Figma 링크](https://www.figma.com/file/9HIjaQvXiTkHFFox5vRiic/3-2-%EC%BA%A1%EC%8A%A4%ED%86%A4(%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC-%EC%B0%BE%EA%B8%B0)?type=design&node-id=0-1&mode=design&t=T49mA9kd5mDzEffE-0)
 
