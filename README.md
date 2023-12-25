@@ -14,6 +14,17 @@
 
 - 반려 동물를 업로드할 수 있는 커뮤니티 기능 탑재
 - 주기적으로 올라오는 사진을 딥러닝하여 잃어버린 반려 동물을 찾아준다.
+  
+# 📃 앱 메뉴얼
+![login](image/1.JPG)
+![main_window](image/2.JPG)
+![find_window](image/3.JPG)
+![find2_window](image/31.JPG)
+![report](image/4.JPG)
+![community](image/5.JPG)
+![notification](image/6.JPG)
+![mypage](image/7.JPG)
+![mypage2](image/71.JPG)
 
 # 👨‍👦‍👦 팀원 소개
 
@@ -44,36 +55,10 @@
 ![tool_stack](image/tool_stack.png)
 
 
-# 📃 앱 메뉴얼
-![login](image/1.JPG)
-![main_window](image/2.JPG)
-![find_window](image/3.JPG)
-![find2_window](image/31.JPG)
-![report](image/4.JPG)
-![community](image/5.JPG)
-![notification](image/6.JPG)
-![mypage](image/7.JPG)
-![mypage2](image/71.JPG)
-
-
 # 💿 ERD
 ![erd](image/erd.png)
 
 
 # 📱 앱 실행 방법
-
-
-
-# 🔶 로컬 실행 방법
-
-
-## 백엔드
-```
-git clone https://github.com/Choi-JY1107/2023-2-Capstone-Server.git
-cd 2023-2-Capstone-Server
-pip install -r requirements.txt 
-
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
-```
+>안드로이드에서만 가능합니다.
+https://github.com/realyuna/2023-2-Capstone-Flutter/releases/tag/v.11 에 들어가서 apk 다운로드 후 설치
