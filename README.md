@@ -15,16 +15,7 @@
 - 반려 동물를 업로드할 수 있는 커뮤니티 기능 탑재
 - 주기적으로 올라오는 사진을 딥러닝하여 잃어버린 반려 동물을 찾아준다.
   
-# 📃 앱 메뉴얼
-![login](image/1.JPG)
-![main_window](image/2.JPG)
-![find_window](image/3.JPG)
-![find2_window](image/31.JPG)
-![report](image/4.JPG)
-![community](image/5.JPG)
-![notification](image/6.JPG)
-![mypage](image/7.JPG)
-![mypage2](image/71.JPG)
+
 
 # 👨‍👦‍👦 팀원 소개
 
